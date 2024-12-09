@@ -1,0 +1,55 @@
+---
+const pages = [
+  {
+    name: "Inicio",
+    href: "/"
+  },
+  {
+    name: "Planes",
+    href: "/plan"
+  },
+  {
+    name: "Adjudicados",
+    href: "/adjudicados"
+  },
+  {
+    name: "Institucional",
+    href: "/institucional"
+  },
+  {
+    name: "Contacto",
+    href: "/contacto"
+  },
+  {
+    name: "Mi Situación",
+    href: "#",
+    isProfile: true
+  },
+]
+---
+
+<header class="fixed w-full bg-white shadow-md transition-transform duration-300 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-bold text-highlight">Motorplan</a>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-4 items-center">
+          {pages.map((link) => (
+            <li>
+              <a 
+                href={link.href} 
+                class:list={["items-center text-sm font-medium transition-all duration-300 hover:text-secondary relative",
+                  {
+                    "border border-black rounded-lg py-2 px-3 hover:border-secondary": link.isProfile
+                  }
+                ]}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
