@@ -1,6 +1,26 @@
 ---
+import Card from "@/components/Card.astro";
 import Layout from "@/layouts/Layout.astro";
+import SearchIcon from "@/icons/Search.astro"
+
+const adjudicados = [
+  { nombre: 'Juan Pérez', localidad: 'Buenos Aires', numeroCuota: 24, montoAdjudicado: 500000 },
+  { nombre: 'María González', localidad: 'Córdoba', numeroCuota: 36, montoAdjudicado: 750000 },
+  { nombre: 'Carlos Rodríguez', localidad: 'Rosario', numeroCuota: 48, montoAdjudicado: 1000000 },
+  { nombre: 'Ana Martínez', localidad: 'Mendoza', numeroCuota: 60, montoAdjudicado: 1250000 },
+]
+
+const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+const ANIOS = ["2024", "2023", "2022", "2021", "2020"]
 ---
 
-<Layout title="Motorplan">
+<Layout title="Motorplan | Adjudicados">
+  <div class="container mx-auto py-8 px-4">
+    <h1 class="text-3xl font-bold mb-8">Adjudicados</h1>
+
+    <Card title="Filtrar Adjudicados">
+      
+    </Card>
+  </div>
 </Layout>
