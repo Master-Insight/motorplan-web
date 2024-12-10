@@ -26,6 +26,8 @@ const pages = [
     isProfile: true
   },
 ]
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="fixed w-full bg-white shadow-md transition-transform duration-300 z-50">
@@ -40,7 +42,8 @@ const pages = [
                 href={link.href} 
                 class:list={["items-center text-sm font-medium transition-all duration-300 hover:text-secondary relative",
                   {
-                    "border border-black rounded-lg py-2 px-3 hover:border-secondary": link.isProfile
+                    "border border-black rounded-lg py-2 px-3 hover:border-secondary": link.isProfile,
+                    "after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-secondary": currentPath === link.href && currentPath !== "/"
                   }
                 ]}
               >
