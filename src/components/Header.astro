@@ -1,9 +1,12 @@
 ---
+import MotorplanIcon from "@/icons/Motorplan.astro";
+import HamburgerIcon from "@/icons/Hamburger.astro"
+
 const pages = [
   {
     name: "Inicio",
     href: "/"
-  },
+  },  
   {
     name: "Planes",
     href: "/plan"
@@ -30,10 +33,13 @@ const pages = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed w-full bg-white shadow-md transition-transform duration-300 z-50">
+<header id="header" class="fixed w-full bg-white shadow-md transition-transform duration-300 z-50">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="text-xl font-bold text-highlight">Motorplan</a>
+      <a href="/" class="text-xl font-bold text-highlight flex items-center space-x-2">
+        <MotorplanIcon />
+        <span class="text-black">Motorplan</span>
+      </a>
       <nav class="hidden md:block">
         <ul class="flex space-x-4 items-center">
           {pages.map((link) => (
@@ -57,6 +63,69 @@ const currentPath = Astro.url.pathname;
           ))}
         </ul>
       </nav>
+      <button id="menuToggle" class="md:hidden" aria-label="Toggle Menu">  
+        <HamburgerIcon />
+      </button>
     </div>
   </div>
+
+  <!-- Menú mobile -->
+  <div class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out" id="mobileMenu">
+    <nav class="px-4 pt-2 pb-4 bg-white">
+      <ul class="space-y-2">
+        {pages.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                `block py-2 px-4 text-sm font-medium transition-colors`,
+                {
+                  "text-secondary bg-slate-200 rounded-lg": currentPath === link.href,
+                  "font-extrabold": link.isProfile
+                }
+              ]}
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<script>
+  import { $ } from "@/lib/dom-selector"
+
+  const menuToggle = $('#menuToggle')
+  const mobileMenu = $('#mobileMenu')
+  const header = $('header')
+  let isMenuOpen = false
+  let lastScrollY = window.scrollY
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen
+    mobileMenu.style.maxHeight = isMenuOpen ? `${mobileMenu.scrollHeight}px` : '0'
+    mobileMenu.style.opacity = isMenuOpen ? '1' : '0'
+    menuToggle.setAttribute('aria-expanded', isMenuOpen.toString())
+
+    menuToggle.innerHTML = isMenuOpen 
+      ? 
+        '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+      :
+        '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>'
+  }
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY
+
+    if(!isMenuOpen){
+      currentScrollY > lastScrollY ? header.style.transform = 'translateY(-100%)' : header.style.transform = 'translateY(0)'
+    }
+    lastScrollY = currentScrollY
+  }
+
+  menuToggle.addEventListener("click", toggleMenu)
+  window.addEventListener('scroll', handleScroll, {passive: true})
+
+</script>
