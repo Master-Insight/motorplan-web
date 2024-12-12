@@ -55,14 +55,10 @@ export const config = {
   // Imagenes. se clasifica segun la pagina 
   images: {
     logo: [
-      "/images/logo/ideas-propias-figura-logo.png",       // 0- figura                PNG
-      "/images/logo/ideas-propias-figura-logo.svg",       // 1- figura                SVG *
-      "/images/logo/ideas-propias-logo-plano.png",        // 2- Logo horizontal       PNG
-      "/images/logo/ideas-propias-logo-plano.svg",        // 3- Logo horizontal       SVG
-      "/images/logo/ideas-propias-logo-plano-negro.svg",  // 4- Logo horizontal Negro SVG
-      "/images/logo/ideas-propias-logo.png",              // 5- Logo vertical         PNG
-      "/images/logo/ideas-propias-logo.svg",              // 6- Logo vertical         SVG
-      "/images/logo/ideas-propias-logo-negro.svg",        // 7- Logo vertical Negro   SVG
+      "/images/identidad/Logo-Motorplan-Blanco-1.png",   // 0- Logo horizontal       PNG
+      "/images/identidad/Logo-Motorplan-Naranja-1.png",  // 1- Logo horizontal       PNG
+      "/images/identidad/Logo-Motorplan-Negro-1.png",    // 2- Logo horizontal       PNG
+      "/images/identidad/Logotipo-Cuad.png",             // 3- Logo horizontal       PNG
     ],
     index: [
       "/images/hero_inicio.jpeg", // pos 0 Hero

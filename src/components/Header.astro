@@ -1,131 +1,148 @@
 ---
-import MotorplanIcon from "@/icons/Motorplan.astro";
-import HamburgerIcon from "@/icons/Hamburger.astro"
+import HamburgerIcon from "@/icons/Hamburger.astro";
+import { config } from "config";
 
 const pages = [
   {
     name: "Inicio",
-    href: "/"
-  },  
+    href: "/",
+  },
   {
     name: "Planes",
-    href: "/plan"
+    href: "/plan",
   },
   {
     name: "Adjudicados",
-    href: "/adjudicados"
+    href: "/adjudicados",
   },
   {
     name: "Institucional",
-    href: "/institucional"
+    href: "/institucional",
   },
   {
     name: "Contacto",
-    href: "/contacto"
+    href: "/contacto",
   },
   {
     name: "Mi Situación",
     href: "#",
-    isProfile: true
+    isProfile: true,
   },
-]
+];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header id="header" class="fixed w-full bg-white shadow-md transition-transform duration-300 z-50">
+<header
+  id="header"
+  class="fixed w-full bg-white shadow-md transition-transform duration-300 z-50"
+>
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="text-xl font-bold text-highlight flex items-center space-x-2">
-        <MotorplanIcon />
-        <span class="text-black">Motorplan</span>
+      <a
+        href="/"
+        class="text-xl font-bold text-highlight flex items-center space-x-2"
+      >
+        <img
+          src={config.images.logo[1]}
+          alt="Logo de Ideas Propias"
+          class="w-auto h-20"
+        />
       </a>
       <nav class="hidden md:block">
         <ul class="flex space-x-4 items-center">
-          {pages.map((link) => (
-            <li>
-              <a 
-                href={link.href} 
-                class:list={
-                  [
+          {
+            pages.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={[
                     "items-center text-sm font-medium transition-all duration-300 hover:text-secondary relative",
-                    { 
-                      "hover:after:absolute hover:after:bottom-[-2px] hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-secondary": !link.isProfile,
-                      "border border-black rounded-lg py-2 px-3 hover:border-secondary": link.isProfile,
-                      "after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-secondary": currentPath === link.href && currentPath !== "/"
-                    }
-                  ]  
-                }
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
+                    {
+                      "hover:after:absolute hover:after:bottom-[-2px] hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-secondary":
+                        !link.isProfile,
+                      "border border-black rounded-lg py-2 px-3 hover:border-secondary":
+                        link.isProfile,
+                      "after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-secondary":
+                        currentPath === link.href && currentPath !== "/",
+                    },
+                  ]}>
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
-      <button id="menuToggle" class="md:hidden" aria-label="Toggle Menu">  
+      <button id="menuToggle" class="md:hidden" aria-label="Toggle Menu">
         <HamburgerIcon />
       </button>
     </div>
   </div>
 
   <!-- Menú mobile -->
-  <div class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out" id="mobileMenu">
+  <div
+    class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
+    id="mobileMenu"
+  >
     <nav class="px-4 pt-2 pb-4 bg-white">
       <ul class="space-y-2">
-        {pages.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class:list={[
-                `block py-2 px-4 text-sm font-medium transition-colors`,
-                {
-                  "text-secondary bg-slate-200 rounded-lg": currentPath === link.href,
-                  "font-extrabold": link.isProfile
-                }
-              ]}
-            >
-              {link.name}
-            </a>
-          </li>
-        ))}
+        {
+          pages.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  `block py-2 px-4 text-sm font-medium transition-colors`,
+                  {
+                    "text-secondary bg-slate-200 rounded-lg":
+                      currentPath === link.href,
+                    "font-extrabold": link.isProfile,
+                  },
+                ]}>
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>
 </header>
 
 <script>
-  import { $ } from "@/lib/dom-selector"
+  import { $ } from "@/lib/dom-selector";
 
-  const menuToggle = $('#menuToggle')
-  const mobileMenu = $('#mobileMenu')
-  const header = $('header')
-  let isMenuOpen = false
-  let lastScrollY = window.scrollY
+  const menuToggle = $("#menuToggle");
+  const mobileMenu = $("#mobileMenu");
+  const header = $("header");
+  let isMenuOpen = false;
+  let lastScrollY = window.scrollY;
 
   function toggleMenu() {
-    isMenuOpen = !isMenuOpen
-    mobileMenu.style.maxHeight = isMenuOpen ? `${mobileMenu.scrollHeight}px` : '0'
-    mobileMenu.style.opacity = isMenuOpen ? '1' : '0'
-    menuToggle.setAttribute('aria-expanded', isMenuOpen.toString())
+    isMenuOpen = !isMenuOpen;
+    mobileMenu.style.maxHeight = isMenuOpen
+      ? `${mobileMenu.scrollHeight}px`
+      : "0";
+    mobileMenu.style.opacity = isMenuOpen ? "1" : "0";
+    menuToggle.setAttribute("aria-expanded", isMenuOpen.toString());
 
-    menuToggle.innerHTML = isMenuOpen 
-      ? 
-        '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
-      :
-        '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>'
+    menuToggle.innerHTML = isMenuOpen
+      ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+      : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
   }
 
   function handleScroll() {
-    const currentScrollY = window.scrollY
+    const currentScrollY = window.scrollY;
 
-    if(!isMenuOpen){
-      currentScrollY > lastScrollY ? header.style.transform = 'translateY(-100%)' : header.style.transform = 'translateY(0)'
+    if (!isMenuOpen) {
+      currentScrollY > lastScrollY
+        ? (header.style.transform = "translateY(-100%)")
+        : (header.style.transform = "translateY(0)");
     }
-    lastScrollY = currentScrollY
+    lastScrollY = currentScrollY;
   }
 
-  menuToggle.addEventListener("click", toggleMenu)
-  window.addEventListener('scroll', handleScroll, {passive: true})
-
+  menuToggle.addEventListener("click", toggleMenu);
+  window.addEventListener("scroll", handleScroll, { passive: true });
 </script>
