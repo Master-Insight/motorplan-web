@@ -3,12 +3,13 @@ import Layout from "@/layouts/Layout.astro";
 import CardsSection from "@/sections/CardsSection.astro";
 import IndexHero from "@/sections/index/IndexHero.astro";
 import HowItWorks from "@/sections/HowItWorks.astro";
+import Frame from "@/components/Frame.astro";
 ---
 
 <Layout title="Motorplan">
-  <div class="container mx-auto py-8">
+  <Frame>
     <IndexHero />
     <CardsSection />
     <HowItWorks />
-  </div>
+  </Frame>
 </Layout>
