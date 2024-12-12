@@ -1,10 +1,11 @@
 ---
+import Frame from "@/components/Frame.astro";
 import Layout from "@/layouts/Layout.astro";
 import List from "@/sections/planes/List.astro";
 ---
 
 <Layout title="Motorplan">
-  <div>
+  <Frame>
     <!-- TITLES -->
     <div class="flex flex-col w-full p-12 text-center">
       <h2 class="text-3xl">Calculá el plan a tu medida</h2>
@@ -13,5 +14,5 @@ import List from "@/sections/planes/List.astro";
 
     <!-- LIST -->
     <List />
-  </div>
+  </Frame>
 </Layout>
