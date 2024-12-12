@@ -1,6 +1,7 @@
 ---
-import Header from "@/components/Header.astro"
-import Footer from "@/components/Footer.astro"
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -11,29 +12,49 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Header />
-		<main class="min-h-screen pt-16 px-4">
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/images/favicon/site.webmanifest" />
+    <meta name="description" content="Motorplan" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+    <main class="min-h-screen pt-16 px-4">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <style is:global>
-	html,
-	body {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-		scroll-behavior: smooth;
-		@apply bg-white text-black;
-	}
+  html,
+  body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    @apply bg-white text-black;
+    font-family: "Poppins", system-ui, sans-serif;
+  }
 </style>
