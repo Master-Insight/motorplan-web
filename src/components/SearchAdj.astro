@@ -1,0 +1,69 @@
+---
+import SearchIcon from "@/icons/Search.astro"
+import ChevronDown from "@/icons/Cevron.astro"
+
+const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+const ANIOS = ["2024", "2023", "2022", "2021", "2020"]
+
+---
+<search class="bg-white rounded-3xl p-4 lg:mx-10">
+  <form
+    id="search-form"
+    class="mx-5 lg:flex lg:justify-between lg:items-center lg:gap-2"
+  >
+    <div
+      id="mes-container"
+      class="flex items-center border-b border-gray-300 lg:border-none relative select-none outline-none lg:focus-visible:outline lg:focus-visible:outline-[#167DB7] lg:focus-visible:outline-1 lg:focus-visible:outline-offset-0 lg:focus-visible:rounded-lg rounded-md lg:w-full lg:px-4"
+    >
+      <div
+        class="w-full py-4 text-gray-600 bg-transparent cursor-pointer flex justify-between items-center border shadow-md rounded-lg px-4"
+        aria-label="Selecciona el mes"
+      >
+        <span id="mes-text"> Selecciona el mes </span>
+
+        <ChevronDown id="mes-chevron" width="24" height="24" /> 
+      </div>
+    </div>
+    
+    <div
+      id="anio-container"
+      class="flex items-center border-b border-gray-300 lg:border-none relative select-none outline-none lg:focus-visible:outline lg:focus-visible:outline-[#167DB7] lg:focus-visible:outline-1 lg:focus-visible:outline-offset-0 lg:focus-visible:rounded-lg rounded-md lg:w-full lg:px-4"
+    >
+      <div
+        class="w-full py-4 text-gray-600 bg-transparent cursor-pointer flex justify-between items-center border shadow-md rounded-lg px-4"
+        aria-label="Selecciona el año"
+      >
+        <span id="anio-text"> Selecciona el año</span>
+
+        <ChevronDown id="anio-chevron" width="24" height="24" /> 
+      </div>
+    </div>
+    
+    <button
+      type="submit"
+      class="shadow-md rounded-full text-lg font-medium bg-primary hover:bg-primary-light transition text-white px-4 py-2 inline-flex gap-x-2 justify-center items-center w-full lg:size-12 lg:mt-1 lg:hover:scale-105"
+      aria-label="Buscar"
+    >
+      <SearchIcon />
+      <p class="lg:hidden">Buscar</p>
+    </button>
+  </form>
+</search>
+
+<script>
+  import { $ } from "@/lib/dom-selector"
+
+  const mesContainer = $('#mes-container')
+  const mesChevron = $('#mes-chevron')
+  const anioContainer = $('#anio-container')
+  const anioChevron = $('#anio-chevron')
+
+  mesContainer?.addEventListener("click", () => {
+    mesChevron.classList.toggle("rotate-180")
+  })
+
+  anioContainer?.addEventListener("click", () => {
+    anioChevron.classList.toggle("rotate-180")
+  })
+</script>
