@@ -1,0 +1,16 @@
+RGB
+Naranja: 234 116 36
+Azul: 20 72 100
+Negro: 0 0 0
+
+
+HEXADECIMAL
+Naranja: ea7424
+Azul: 144864
+Negro: 000000
+
+
+CMYK
+Naranja: 0 60 100 0
+Azul: 100 70 36 20
+Negro: 0 0 0 100
