@@ -1,24 +1,7 @@
-<section class="bg-gray-100">
+<section class="bg-primary-darker w-full">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-      <div class="lg:col-span-2 lg:py-12">
-        <p class="max-w-xl text-lg">
-          At the same time, the fact that we are wholly owned and totally
-          independent from manufacturer and other group control gives you
-          confidence that we will only recommend what is right for you.
-        </p>
-
-        <div class="mt-8">
-          <a href="#" class="text-2xl font-bold text-pink-600">
-            0151 475 4450
-          </a>
-
-          <address class="mt-2 not-italic">
-            282 Kevin Brook, Imogeneborough, CA 58517
-          </address>
-        </div>
-      </div>
-
+      <!-- Form -->
       <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
         <form
           action="https://formsubmit.co/gustavo.sirtori@gmail.com"
@@ -26,45 +9,54 @@
           class="space-y-4"
         >
           <div>
-            <label class="sr-only" for="nombre">Nombre</label>
+            <label for="nombre">Nombre*</label>
             <input
-              class="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Nombre"
+              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
               type="text"
               id="nombre"
+              required
             />
           </div>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label class="sr-only" for="email">Dirección de email</label>
+              <label class="" for="email">Dirección de email</label>
               <input
-                class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Dirección de email"
+                class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
                 type="email"
                 id="email"
               />
             </div>
 
             <div>
-              <label class="sr-only" for="telefono">Número de teléfono</label>
+              <label class="" for="telefono">Número de teléfono*</label>
               <input
-                class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Número de teléfono"
+                class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
                 type="tel"
                 id="telefono"
+                required
               />
             </div>
           </div>
 
           <div>
-            <label class="sr-only" for="mensaje">Mensaje</label>
+            <label for="asunto">Asunto*</label>
+            <input
+              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              type="text"
+              id="asunto"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="" for="mensaje">Déjanos tu consulta*</label>
 
             <textarea
-              class="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Déjanos tu consulta"
+              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
               rows="8"
-              id="mensaje"></textarea>
+              id="mensaje"
+              required></textarea>
           </div>
 
           <div class="mt-4">
@@ -76,6 +68,22 @@
             </button>
           </div>
         </form>
+      </div>
+
+      <!-- Texto adicional -->
+      <div class="lg:col-span-2 lg:py-12 p-8">
+        <p class="max-w-xl text-3xl font-bold text-white">
+          ¡Escribinos! Estamos para ayudarte.
+        </p>
+
+        <div class="mt-8 text-lg text-primary-lighter">
+          <p>También podés llamarnos al</p>
+          <p class="font-bold">0151 475 4450</p>
+        </div>
+        <div class="mt-8 text-lg text-primary-lighter">
+          <p class="mt-2 not-italic">O enviarnos un WhatsApp al</p>
+          <p class="font-bold">0151 475 4450</p>
+        </div>
       </div>
     </div>
   </div>
