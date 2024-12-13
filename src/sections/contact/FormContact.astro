@@ -1,0 +1,90 @@
+<section class="bg-primary-darker w-full">
+  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
+      <!-- Form -->
+      <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+        <form
+          action="https://formsubmit.co/gustavo.sirtori@gmail.com"
+          method="POST"
+          class="space-y-4"
+        >
+          <div>
+            <label for="nombre">Nombre*</label>
+            <input
+              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              type="text"
+              id="nombre"
+              required
+            />
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label class="" for="email">Dirección de email</label>
+              <input
+                class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+                type="email"
+                id="email"
+              />
+            </div>
+
+            <div>
+              <label class="" for="telefono">Número de teléfono*</label>
+              <input
+                class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+                type="tel"
+                id="telefono"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="asunto">Asunto*</label>
+            <input
+              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              type="text"
+              id="asunto"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="" for="mensaje">Déjanos tu consulta*</label>
+
+            <textarea
+              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              rows="8"
+              id="mensaje"
+              required></textarea>
+          </div>
+
+          <div class="mt-4">
+            <button
+              type="submit"
+              class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Texto adicional -->
+      <div class="lg:col-span-2 lg:py-12 p-8">
+        <p class="max-w-xl text-3xl font-bold text-white">
+          ¡Escribinos! Estamos para ayudarte.
+        </p>
+
+        <div class="mt-8 text-lg text-primary-lighter">
+          <p>También podés llamarnos al</p>
+          <p class="font-bold">0151 475 4450</p>
+        </div>
+        <div class="mt-8 text-lg text-primary-lighter">
+          <p class="mt-2 not-italic">O enviarnos un WhatsApp al</p>
+          <p class="font-bold">0151 475 4450</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

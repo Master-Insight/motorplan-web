@@ -1,0 +1,29 @@
+---
+import { string } from "astro:schema";
+import adjudicados from "../../data/adjudicados.json";
+
+// Función para encontrar el último mes y año
+function getLastAdjudicado(data) {
+  const years = Object.keys(data).sort(); // Ordena los años
+  const lastYear = years[years.length - 1]; // Toma el último año
+  const months = Object.keys(data[lastYear]).sort(
+    (a, b) => Number(a) - Number(b),
+  ); // Ordena los meses numéricamente
+  const lastMonth = months[months.length - 1]; // Toma el último mes
+  return data[lastYear][lastMonth]; // Devuelve el valor del último mes
+}
+
+const ultimoAdjudicado = getLastAdjudicado(adjudicados);
+
+console.log(ultimoAdjudicado);
+---
+
+<div
+  class="m-12 p-12 bg-secondary rounded-3xl flex flex-col items-center gap-2"
+>
+  <p class="text-2xl">
+    SORTEO {ultimoAdjudicado.mes.toUpperCase()}
+  </p>
+  <div class="bg-primary w-9/12 h-1"></div>
+  <p class="text-4xl font-semibold">{ultimoAdjudicado.ganador}</p>
+</div>

@@ -1,0 +1,24 @@
+---
+import { getCollection, CollectionEntry } from "astro:content";
+
+// Definir el tipo específico para la colección "planes"
+type Plan = CollectionEntry<"planes">;
+
+// Obtener la colección
+const PLANES = await getCollection("planes");
+
+// Ordenar los planes según el campo "order"
+PLANES.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="flex flex-col p-8 gap-4">
+  {
+    PLANES.map((plan) => (
+      <div class="border-2 border-secondary rounded-2xl p-4">
+        <h3 class="text-3xl text-primary font-bold">{plan.data.title}</h3>
+        <p>{plan.data.subtitle}</p>
+        <div class="prose">{plan.body}</div>
+      </div>
+    ))
+  }
+</div>
