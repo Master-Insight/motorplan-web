@@ -1,43 +1,98 @@
 ---
 import SearchIcon from "@/icons/Search.astro"
-import ChevronDown from "@/icons/Cevron.astro"
+import ChevronDown from "@/icons/Chevron.astro"
 
-const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+const MONTHS = ["none", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
-const ANIOS = ["2024", "2023", "2022", "2021", "2020"]
+const YEARS = ["none", "2024", "2023", "2022", "2021", "2020"]
 
 ---
 <search class="bg-white rounded-3xl p-4 lg:mx-10">
   <form
     id="search-form"
-    class="mx-5 lg:flex lg:justify-between lg:items-center lg:gap-2"
+    class="mx-5 flex flex-col lg:flex-row lg:justify-between lg:items-center lg:gap-2 gap-4"
   >
     <div
-      id="mes-container"
+      id="month-container"
       class="flex items-center border-b border-gray-300 lg:border-none relative select-none outline-none lg:focus-visible:outline lg:focus-visible:outline-[#167DB7] lg:focus-visible:outline-1 lg:focus-visible:outline-offset-0 lg:focus-visible:rounded-lg rounded-md lg:w-full lg:px-4"
+      aria-expanded="false"
     >
       <div
         class="w-full py-4 text-gray-600 bg-transparent cursor-pointer flex justify-between items-center border shadow-md rounded-lg px-4"
         aria-label="Selecciona el mes"
       >
-        <span id="mes-text"> Selecciona el mes </span>
+        <span id="month-text"> Selecciona el mes </span>
 
-        <ChevronDown id="mes-chevron" width="24" height="24" /> 
+        <ChevronDown id="month-chevron" width="24" height="24" /> 
       </div>
+      <ul
+        id="month-options"
+        role="listbox"
+        class="absolute top-full mt-2 space-y-1 rounded-lg left-0 p-1 max-h-80 w-full border border-gray-300 bg-white shadow-md hidden overflow-auto z-20"
+        data-track="month_level"
+      >
+        {
+          MONTHS.map((mes, index) => {
+            const isDefault = index === 0
+            const literal = isDefault ? "Selecciona el mes" : mes
+
+            return (
+              <li
+                id="month-option"
+                role="option"
+                class={`p-3 transition-colors duration-200 ease-in-out rounded-md outline-none cursor-pointer hover:bg-primary-lighter ${isDefault ? "text-gray-400 bg-none pointer-events-none" : "text-gray-600"}`}
+                data-value={index}
+                aria-disabled={isDefault}
+                aria-selected={isDefault}
+                tabindex={isDefault ? -1 : 0}
+              >
+                {literal}
+              </li>
+            )
+          })
+        }
+      </ul>
     </div>
     
     <div
-      id="anio-container"
+      id="year-container"
       class="flex items-center border-b border-gray-300 lg:border-none relative select-none outline-none lg:focus-visible:outline lg:focus-visible:outline-[#167DB7] lg:focus-visible:outline-1 lg:focus-visible:outline-offset-0 lg:focus-visible:rounded-lg rounded-md lg:w-full lg:px-4"
     >
       <div
         class="w-full py-4 text-gray-600 bg-transparent cursor-pointer flex justify-between items-center border shadow-md rounded-lg px-4"
         aria-label="Selecciona el año"
       >
-        <span id="anio-text"> Selecciona el año</span>
+        <span id="year-text"> Selecciona el año</span>
 
-        <ChevronDown id="anio-chevron" width="24" height="24" /> 
+        <ChevronDown id="year-chevron" width="24" height="24" /> 
       </div>
+      <ul
+        id="year-options"
+        role="listbox"
+        class="absolute top-full mt-2 space-y-1 rounded-lg left-0 p-1 max-h-80 w-full border border-gray-300 bg-white shadow-md hidden overflow-auto z-20"
+        data-track="year_level"
+      >
+        {
+          YEARS.map((anio, index) => {
+            const isDefault = index === 0
+            const literal = isDefault ? "Selecciona el año" : anio
+
+            return (
+              <li
+                id="year-option"
+                role="option"
+                class={`p-3 transition-colors duration-200 ease-in-out rounded-md outline-none cursor-pointer hover:bg-primary-lighter ${isDefault ? "text-gray-400 bg-none pointer-events-none" : "text-gray-600"}`}
+                data-value={anio}
+                aria-disabled={isDefault}
+                aria-selected={isDefault}
+                tabindex={isDefault ? -1 : 0}
+              >
+                {literal}
+              </li>
+            )
+          })
+        }
+      </ul>
     </div>
     
     <button
@@ -54,16 +109,68 @@ const ANIOS = ["2024", "2023", "2022", "2021", "2020"]
 <script>
   import { $ } from "@/lib/dom-selector"
 
-  const mesContainer = $('#mes-container')
-  const mesChevron = $('#mes-chevron')
-  const anioContainer = $('#anio-container')
-  const anioChevron = $('#anio-chevron')
-
-  mesContainer?.addEventListener("click", () => {
-    mesChevron.classList.toggle("rotate-180")
-  })
-
-  anioContainer?.addEventListener("click", () => {
-    anioChevron.classList.toggle("rotate-180")
+  document.addEventListener("astro:page-load", () => {
+    function initializeDropdown ({containerId, chevronId, optionsId, textId, hiddenInputName}) {
+      const container = $(`#${containerId}`)
+      const chevron = $(`#${chevronId}`)
+      const options = $(`#${optionsId}`)
+      const textElement = $(`#${textId}`)
+      const hiddenInput = document.createElement("input")
+  
+      hiddenInput.type = "hidden"
+      hiddenInput.name = hiddenInputName
+      container?.appendChild(hiddenInput)
+  
+      container?.addEventListener("click", () => {
+        const isExpanded = container?.getAttribute("aria-expanded") === "true"
+        container?.setAttribute("aria-expanded", `${!isExpanded}`)
+        chevron?.classList.toggle("rotate-180")
+        options?.classList.toggle("hidden")
+      })
+  
+      document.addEventListener("click", (e) => {
+      if(!container?.contains(e.target)){
+        container?.setAttribute("aria-expanded", "false")
+        chevron?.classList.remove("rotate-180")
+        options?.classList.add("hidden")
+      }
+      })
+  
+      options?.addEventListener("click", (e) => {
+        const target = e.target
+        const selectedOption = target?.closest("[data-value]")
+  
+        if (selectedOption && selectedOption.getAttribute("data-value") !== "0") {
+          const value = selectedOption.getAttribute("data-value")
+          const text = selectedOption.textContent?.trim()
+  
+          if (textElement && hiddenInput) {
+            textElement.textContent = text
+            hiddenInput.value = value
+          }
+  
+          options.querySelectorAll("[data-value]").forEach((option) => {
+            option.classList.remove("bg-primary-light")
+          })  
+          selectedOption.classList.add("bg-primary-light")
+        }
+      })
+    }
+  
+    initializeDropdown ({
+      containerId: "month-container",
+      chevronId: "month-chevron",
+      optionsId: "month-options",
+      textId: "month-text",
+      hiddenInputName: "month"
+    })
+  
+    initializeDropdown ({
+      containerId: "year-container",
+      chevronId: "year-chevron",
+      optionsId: "year-options",
+      textId: "year-text",
+      hiddenInputName: "year"
+    })
   })
 </script>
