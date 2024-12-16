@@ -30,7 +30,10 @@ const pages = [
   },
 ];
 
-const currentPath = Astro.url.pathname;
+const {pathname} = Astro.url
+const currentPath = pathname.endsWith("/") && pathname.length > 1
+  ? pathname.slice(0, -1)
+  : pathname
 ---
 
 <header
@@ -64,8 +67,8 @@ const currentPath = Astro.url.pathname;
                       "border border-black rounded-lg py-2 px-3 hover:border-secondary-light":
                         link.isProfile,
                       "after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-secondary-light":
-                        currentPath === link.href && currentPath !== "/",
-                    },
+                        currentPath === link.href
+                    }
                   ]}>
                   {link.name}
                 </a>
@@ -97,7 +100,7 @@ const currentPath = Astro.url.pathname;
                   {
                     "text-white bg-secondary-lighter rounded-lg":
                       currentPath === link.href,
-                    "font-black": link.isProfile,
+                    "font-bold": link.isProfile,
                   },
                 ]}>
                 {link.name}
@@ -131,18 +134,31 @@ const currentPath = Astro.url.pathname;
       menuToggle.innerHTML = isMenuOpen
       ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
       : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
-    });
+    })
 
-    window.addEventListener("scroll", () => {
+    function debounce(func, delay) {
+      let timerId
+      return function (...args) {
+        clearTimeout(timerId)
+        timerId = setTimeout(() => {
+          func.apply(this, args)
+        }, delay)
+      }
+    }
+
+    function handleScroll() {
       const currentScrollY = window.scrollY;
 
       if (!isMenuOpen) {
-        currentScrollY > lastScrollY
-        ? (header.style.transform = "translateY(-100%)")
-        : (header.style.transform = "translateY(0)");
+        header.style.transform = 
+          currentScrollY === 0 ? "translateY(0)" :
+          currentScrollY > lastScrollY ? "translateY(-100%)" :
+          "translateY(0)"
       }
       
-      lastScrollY = currentScrollY;
-    }, { passive: true });
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener("scroll", debounce(handleScroll, 200), { passive: true });
   })
 </script>
