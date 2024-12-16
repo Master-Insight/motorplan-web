@@ -1,0 +1,42 @@
+---
+const adjudicados = [
+  { nombre: 'Juan Pérez', localidad: 'Buenos Aires', numeroCuota: 24, montoAdjudicado: 500000 },
+  { nombre: 'María González', localidad: 'Córdoba', numeroCuota: 36, montoAdjudicado: 750000 },
+  { nombre: 'Carlos Rodríguez', localidad: 'Rosario', numeroCuota: 48, montoAdjudicado: 1000000 },
+  { nombre: 'Ana Martínez', localidad: 'Mendoza', numeroCuota: 60, montoAdjudicado: 1250000 },
+]
+
+const formatCurrency = (amount) => {
+  return new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0,
+  }).format(amount);
+};
+---
+
+<section class="py-4">
+  <h2 class="text-2xl font-semibold text-center mt-2">
+    Lista de Adjudicados
+  </h2>
+  <table class="min-w-full table-auto border-collapse mt-4">
+    <thead>
+      <tr class="bg-secondary-darker text-white">
+        <th class="text-left p-2">Nombre</th>
+        <th class="text-left p-2">Localidad</th>
+        <th class="text-left p-2">Monto</th>
+        <th class="text-left p-2">Cuota N°</th>
+      </tr>
+    </thead>
+    <tbody>
+      {adjudicados.map((item, i) => (
+        <tr class={`${i % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
+          <td class="p-2">{item.nombre}</td>
+          <td class="p-2">{item.localidad}</td>
+          <td class="p-2">{formatCurrency(item.montoAdjudicado)}</td>
+          <td class="p-2">{item.numeroCuota}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>
