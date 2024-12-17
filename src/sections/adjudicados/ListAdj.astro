@@ -1,4 +1,6 @@
 ---
+import { formatCurrency } from "@/lib/format-curryency"
+
 const adjudicados = [
   { nombre: 'Juan Pérez', localidad: 'Buenos Aires', numeroCuota: 24, montoAdjudicado: 500000, year: 2023, month: 'Enero' },
   { nombre: 'María González', localidad: 'Córdoba', numeroCuota: 36, montoAdjudicado: 750000, year: 2023, month: 'Marzo' },
@@ -18,38 +20,20 @@ const adjudicados = [
 
 const MONTHS = ["none", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
-const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'ARS',
-    minimumFractionDigits: 0,
-  }).format(amount);
+const year = Number(Astro.url.searchParams.get("year")) || null
+const month = Number(Astro.url.searchParams.get("month")) || null
+const monthText = month ? MONTHS[month] : ""
+
+// Función que llamará a API en un futuro.
+function fetching(year, month) {
+  return adjudicados.filter(adj => {
+    const matchYear = year ? adj.year === year : true
+    const matchMonth = month ? adj.month === MONTHS[month] : true
+    return matchYear && matchMonth
+  })
 }
 
-const year = Astro.url.searchParams.get("year") || ""
-const month = Astro.url.searchParams.get("month") || ""
-
-let monthText = ""
-
-if (year && month) {
-  monthText = MONTHS[month]
-}
-
-let listed
-
-function fetching(year, month){
-  if (!month) return adjudicados.filter(adj => adj.year === Number(year))
-
-  return adjudicados.filter(adj => adj.year === Number(year) && adj.month === MONTHS[month])
-}
-
-const filtered = fetching(year, month)
-
-if (!year) {
-  listed = adjudicados
-} else {
-  listed = filtered
-}
+const listed = year !== null ? fetching(year, month) : adjudicados
 ---
 
 <section class="py-4">
@@ -64,7 +48,7 @@ if (!year) {
         <th class="text-left p-2">Monto</th>
         <th class="text-left p-2">Cuota</th>
       </tr>
-    </thead>
+    </thead>  
     <tbody>
       {listed.map((item, i) => (
         <tr class={`${i % 2 === 0 ? 'bg-gray-50' : 'bg-gray-200'}` }>
