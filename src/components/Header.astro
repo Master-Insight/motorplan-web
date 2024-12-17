@@ -114,6 +114,7 @@ const currentPath = pathname.endsWith("/") && pathname.length > 1
 </header>
 
 <script>
+  import { debounce } from "@/lib/debounce";
   import { $ } from "@/lib/dom-selector";
 
   document.addEventListener("astro:page-load", () => {
@@ -136,16 +137,6 @@ const currentPath = pathname.endsWith("/") && pathname.length > 1
       : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
     })
 
-    function debounce(func, delay) {
-      let timerId
-      return function (...args) {
-        clearTimeout(timerId)
-        timerId = setTimeout(() => {
-          func.apply(this, args)
-        }, delay)
-      }
-    }
-
     function handleScroll() {
       const currentScrollY = window.scrollY;
 
@@ -159,6 +150,6 @@ const currentPath = pathname.endsWith("/") && pathname.length > 1
       lastScrollY = currentScrollY
     }
 
-    window.addEventListener("scroll", debounce(handleScroll, 200), { passive: true });
+    window.addEventListener("scroll", debounce(handleScroll, 100), { passive: true });
   })
 </script>
