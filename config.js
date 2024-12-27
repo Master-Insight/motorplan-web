@@ -44,13 +44,13 @@ export const config = {
   empresa: {
     name: "Motorplan",
     descripcion: "Consultora integral de negocios que brinda asesoramiento a empresas, empresarios y emprendedores con la visión y el deseo de impulsar el crecimiento de sus negocios.",
-    direccion: "dirección",
-    email: "email@email.com",
+    direccion: "Av. Emilio Olmos 123 - Piso 1 - CP: 5000 - Córdoba Capital",
+    email: "suscriptores@motorplanargentina.com.ar",
     linkedin: "https://www.linkedin.com/",
     instagram: "https://www.instagram.com/plan.x5/",
     facebook: "https://www.facebook.com/PlanX5/",
     youtube: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
-    whatsapp: "351-1234567",
+    whatsapp: "351-4733144",
   },
   // Imagenes. se clasifica segun la pagina 
   images: {
