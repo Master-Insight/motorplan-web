@@ -15,6 +15,13 @@ const telefono = config.empresa.whatsapp;
       <!-- Form -->
       <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
         <form action={actionurl} method="POST" class="space-y-4">
+          <!-- Redirige a otra pagina al enviar -->
+          <input
+            type="hidden"
+            name="_next"
+            value="https://motorplan-web.vercel.app/graciasportucontacto"
+          />
+
           <div>
             <label for="nombre">Nombre*</label>
             <input

@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { config } from "config";
+---
+
+<Layout title="Gracias por tu mensaje">
+  <section
+    class="bg-primary-darker w-full min-h-[75vh] flex justify-center items-center"
+  >
+    <div class="p-8 bg-white rounded-3xl flex flex-col items-center">
+      <p class="font-bold">Muchas gracias por tu contacto.</p>
+      <p>Pronto uno de nuestros asesores se comunicará contigo</p>
+      <a href="/">
+        <img
+          src={config.images.logo[1]}
+          alt="Logo de Ideas Propias"
+          class="w-auto h-20"
+        />
+        <p class="italic text-center">Haz clic aquí para volver al inicio</p>
+      </a>
+    </div>
+  </section>
+</Layout>
