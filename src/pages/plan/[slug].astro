@@ -1,0 +1,69 @@
+---
+import Frame from "@/components/Frame.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const PLANES = await getCollection("planes");
+
+  return PLANES.map((planes) => ({
+    params: { slug: planes.slug },
+    props: { planes },
+  }));
+}
+const { planes } = Astro.props;
+console.log(planes);
+
+const { data, body } = planes;
+const { title, subtitle, image, cuotaEjemplo, valorEjemplo } = data;
+---
+
+<Layout title={title}>
+  <Frame>
+    <div class="rounded-2xl flex items-center p-4 bg-slate-100">
+      <!-- Imagen de muestra -->
+      {image && <img src={image} class="w-1/2 rounded-2xl" />}
+
+      <!-- Area detalle del producto -->
+      <div class="p-4 flex flex-col items-center">
+        <!-- Enlace para volver al listado -->
+        <a
+          href="/planes"
+          class="mt-4 text-primary hover:text-primary-dark transition"
+        >
+          Volver al listado
+        </a>
+
+        <h3 class="text-3xl text-primary font-bold">{title}</h3>
+        <!-- <p>{subtitle}</p> -->
+
+        <!-- Valores de ejemplo -->
+        <p class="text-sm my-2">
+          Ejemplo de cuota: $ {Number(cuotaEjemplo).toLocaleString()}
+        </p>
+        <p class="italic text-xs">
+          Si tu compra es de $ {Number(valorEjemplo).toLocaleString()}
+        </p>
+
+        <!-- Si llevara descripcion -->
+        <!-- <div class="prose">{body}</div> -->
+      </div>
+    </div>
+
+    <!-- Mostrar PDF del contrato -->
+    <!-- {
+      contrato && (
+        <div class="mt-8 p-4 bg-white shadow rounded-lg">
+          <h4 class="text-xl font-semibold mb-2">Contrato asociado:</h4>
+          <a
+            href={contrato}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary underline">
+            Descargar contrato
+          </a>
+        </div>
+      )
+    } -->
+  </Frame>
+</Layout>

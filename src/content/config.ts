@@ -9,7 +9,7 @@ const planes = defineCollection({
     image: z.string().optional(),
     cuotaEjemplo: z.number(),
     valorEjemplo: z.number(),
-    contratos: z.string().optional(),
+    contrato: z.string().optional(),
   })
 })
 
