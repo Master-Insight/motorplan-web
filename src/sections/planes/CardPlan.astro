@@ -1,0 +1,22 @@
+---
+const { item } = Astro.props;
+const { data, body } = item;
+const { title, subtitle, image, cuotaEjemplo, valorEjemplo } = data;
+---
+
+<div class="w-4/12 flex items-center justify-center p-2">
+  <div class="rounded-2xl flex flex-col items-center p-4 bg-slate-100">
+    {image && <img src={image} class="w-full rounded-2xl" />}
+    <div class="p-4">
+      <h3 class="text-3xl text-primary font-bold">{title}</h3>
+      <!-- <p>{subtitle}</p> -->
+      <!-- <div class="prose">{body}</div> -->
+      <p class="text-sm text-center my-2">
+        Ejemplo de cuota: $ {Number(cuotaEjemplo).toLocaleString()}
+      </p>
+      <p class="italic text-xs text-center">
+        Si tu compra es de $ {Number(valorEjemplo).toLocaleString()}
+      </p>
+    </div>
+  </div>
+</div>
