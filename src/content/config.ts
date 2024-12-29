@@ -6,6 +6,10 @@ const planes = defineCollection({
     order: z.number(),
     title: z.string(),
     subtitle: z.string().optional(),
+    image: z.string().optional(),
+    cuotaEjemplo: z.number(),
+    valorEjemplo: z.number(),
+    contrato: z.string().optional(),
   })
 })
 

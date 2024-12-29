@@ -1,15 +1,10 @@
 ---
 import Card from "@/components/Card.astro";
-import SearchAdj from "@/components/SearchAdj.astro";
+import SearchAdj from "@/sections/adjudicados/SearchAdj.astro"
 import Layout from "@/layouts/Layout.astro";
+import List from "@/sections/adjudicados/ListAdj.astro";
 
-
-const adjudicados = [
-  { nombre: 'Juan Pérez', localidad: 'Buenos Aires', numeroCuota: 24, montoAdjudicado: 500000 },
-  { nombre: 'María González', localidad: 'Córdoba', numeroCuota: 36, montoAdjudicado: 750000 },
-  { nombre: 'Carlos Rodríguez', localidad: 'Rosario', numeroCuota: 48, montoAdjudicado: 1000000 },
-  { nombre: 'Ana Martínez', localidad: 'Mendoza', numeroCuota: 60, montoAdjudicado: 1250000 },
-]
+export const prerender = false
 ---
 
 <Layout title="Motorplan | Adjudicados">
@@ -18,5 +13,6 @@ const adjudicados = [
     <Card title="Filtrar Adjudicados">
       <SearchAdj />
     </Card>
+    <List />
   </div>
 </Layout>

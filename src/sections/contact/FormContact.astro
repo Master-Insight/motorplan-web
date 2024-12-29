@@ -1,13 +1,27 @@
+---
+import { config } from "../../../config.js";
+
+// const email = config.empresa.email;
+// const email = "gustavo.sirtori@gmail.com"; // de prueba a activar
+const email = "11e069ec7f2a7abfb4222dcfa4cdcdd3"; // de prueba a ACTIVADO
+const actionurl = `https://formsubmit.co/${email}`;
+
+const telefono = config.empresa.whatsapp;
+---
+
 <section class="bg-primary-darker w-full">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
       <!-- Form -->
       <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-        <form
-          action="https://formsubmit.co/gustavo.sirtori@gmail.com"
-          method="POST"
-          class="space-y-4"
-        >
+        <form action={actionurl} method="POST" class="space-y-4">
+          <!-- Redirige a otra pagina al enviar -->
+          <input
+            type="hidden"
+            name="_next"
+            value="https://motorplan-web.vercel.app/graciasportucontacto"
+          />
+
           <div>
             <label for="nombre">Nombre*</label>
             <input
@@ -78,11 +92,11 @@
 
         <div class="mt-8 text-lg text-primary-lighter">
           <p>También podés llamarnos al</p>
-          <p class="font-bold">0151 475 4450</p>
+          <p class="font-bold">{telefono}</p>
         </div>
         <div class="mt-8 text-lg text-primary-lighter">
           <p class="mt-2 not-italic">O enviarnos un WhatsApp al</p>
-          <p class="font-bold">0151 475 4450</p>
+          <p class="font-bold">{telefono}</p>
         </div>
       </div>
     </div>
