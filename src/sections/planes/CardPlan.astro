@@ -6,7 +6,7 @@ const { title, subtitle, image, cuotaEjemplo, valorEjemplo } = data;
 
 <div class="w-4/12 flex items-center justify-center p-2">
   <div class="rounded-2xl flex flex-col items-center p-4 bg-slate-100">
-    {image && <img src={image} class="w-full rounded-2xl" transition:name={`img-${slug}`}/>}
+    {image && <img src={image} class="w-full rounded-2xl aspect-auto object-cover" transition:name={`img-${slug}`}/>}
     <div class="p-4 flex flex-col items-center">
       <h3 
         class="text-3xl text-primary font-bold"
