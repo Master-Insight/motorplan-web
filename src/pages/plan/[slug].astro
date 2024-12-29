@@ -29,7 +29,7 @@ const { title, subtitle, image, cuotaEjemplo, valorEjemplo, contrato } = data;
           <img
             src={image}
             alt={`Imagen de ${title}`}
-            class="w-full lg:w-1/2 h-[70vh] object-cover rounded-2xl shadow-md"
+            class="w-full lg:w-1/2 h-[70vh] object-cover rounded-2xl shadow-md aspect-auto"
             transition:name={`img-${slug}`}
           />
         )
