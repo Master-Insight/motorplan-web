@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { planes } = Astro.props;
 // console.log(planes);
 
-const { data, body } = planes;
+const { data, body, slug } = planes;
 const { title, subtitle, image, cuotaEjemplo, valorEjemplo, contrato } = data;
 ---
 
@@ -30,6 +30,7 @@ const { title, subtitle, image, cuotaEjemplo, valorEjemplo, contrato } = data;
             src={image}
             alt={`Imagen de ${title}`}
             class="w-full lg:w-1/2 h-[70vh] object-cover rounded-2xl shadow-md"
+            transition:name={`img-${slug}`}
           />
         )
       }
@@ -38,14 +39,19 @@ const { title, subtitle, image, cuotaEjemplo, valorEjemplo, contrato } = data;
       <div class="flex-1 flex flex-col justify-between gap-6 lg:self-stretch">
         <!-- Enlace para volver al listado -->
         <a
-          href="/planes"
+          href="/plan"
           class="text-primary hover:text-primary-dark transition font-medium underline"
         >
           ← Volver al listado
         </a>
 
         <div>
-          <h1 class="text-4xl font-bold text-primary mb-2">{title}</h1>
+          <h3 
+            class="text-4xl font-bold text-primary mb-2"
+            transition:name={`title-${slug}`}
+          >
+            {title}
+          </h3>
           {subtitle && <p class="text-lg text-gray-600 mb-4">{subtitle}</p>}
 
           <!-- Valores de ejemplo -->
