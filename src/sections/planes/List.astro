@@ -13,6 +13,6 @@ const PLANES = await getCollection("planes");
 PLANES.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<div class="w-4/5 flex flex-wrap p-8 items-center justify-center">
+<div class="w-4/5 grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-8">
   {PLANES.map((plan) => <CardPlan item={plan} />)}
 </div>
