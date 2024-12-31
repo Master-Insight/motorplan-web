@@ -1,5 +1,6 @@
 ---
 import { formatCurrency } from "@/lib/format-curryency";
+import { MONTHS } from "@/const/dates";
 
 const adjudicados = [
   {
@@ -197,22 +198,6 @@ const adjudicados = [
     mes: "octubre",
     year: 2024,
   },
-];
-
-const MONTHS = [
-  "none",
-  "Enero",
-  "Febrero",
-  "Marzo",
-  "Abril",
-  "Mayo",
-  "Junio",
-  "Julio",
-  "Agosto",
-  "Septiembre",
-  "Octubre",
-  "Noviembre",
-  "Diciembre",
 ];
 
 const year = Number(Astro.url.searchParams.get("year")) || null;
