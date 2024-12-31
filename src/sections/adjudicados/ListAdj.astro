@@ -103,11 +103,11 @@ function fetching(year, month) {
 const listed = year !== null ? fetching(year, month) : adjudicados;
 ---
 
-<section class="py-4">
+<section class="py-4 mt-6">
   <h2 class="text-2xl font-semibold text-center mt-2">
     {`Lista de Adjudicados ${year ? `- ${monthText} ${year}` : ""}`}
   </h2>
-  <table class="min-w-full table-auto border-collapse mt-4 text-center">
+  <table class="min-w-full table-auto border-collapse mt-8 text-center">
     <thead>
       <tr class="bg-secondary-darker text-white">
         <th class="p-2">Cuota</th>
