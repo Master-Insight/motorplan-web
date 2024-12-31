@@ -208,7 +208,7 @@ const monthText = month ? MONTHS[month] : "";
 function fetching(year, month) {
   return adjudicados.filter((adj) => {
     const matchYear = year ? adj.year === year : true;
-    const matchMonth = month ? adj.month === MONTHS[month] : true;
+    const matchMonth = month ? adj.mes === MONTHS[month] : true;
     return matchYear && matchMonth;
   });
 }
