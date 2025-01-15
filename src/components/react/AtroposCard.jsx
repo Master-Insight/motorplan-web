@@ -6,9 +6,9 @@ export function AtroposCard({data, slug}) {
   return (
     <Atropos
       className={'my-atropos hover:saturate-[1.2] transition-all duration-150 aspect-auto'}
-      rotateXMax={4}
-      rotateYMax={4}
-      activeOffset={30}
+      rotateXMax={1}
+      rotateYMax={1}
+      activeOffset={10}
       highlight={true}
     >
       <a 

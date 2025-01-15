@@ -45,7 +45,7 @@ export const config = {
     name: "Motorplan",
     descripcion: "Consultora integral de negocios que brinda asesoramiento a empresas, empresarios y emprendedores con la visión y el deseo de impulsar el crecimiento de sus negocios.",
     direccion: "Av. Emilio Olmos 123 - Piso 1 - CP: 5000 - Córdoba Capital",
-    email: "suscriptores@motorplanargentina.com.ar",
+    email: "consultas@motorplanargentina.com",
     linkedin: "https://www.linkedin.com/",
     instagram: "https://www.instagram.com/plan.x5/",
     facebook: "https://www.facebook.com/PlanX5/",
