@@ -12,9 +12,8 @@ const response = await fetch(
 );
 
 const adjudicados = await response.json();
-// console.log(adjudicados);
 
-const year = Number(Astro.url.searchParams.get("year")) || null;
+const year = Astro.url.searchParams.get("year") || null;
 const month = Number(Astro.url.searchParams.get("month")) || null;
 const monthText = month ? MONTHS[month] : "";
 
