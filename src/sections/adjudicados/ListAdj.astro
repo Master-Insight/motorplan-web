@@ -2,92 +2,18 @@
 import { formatCurrency } from "@/lib/format-curryency";
 import { MONTHS } from "@/const/dates";
 
-const adjudicados = [
-  // valores reALES ---------------------------------------------------
-  {
-    nombre: "Herrera Paola Mariana",
-    numeroSorteo: 89,
-    plan: "50",
-    montoAdjudicado: 2000000,
-    numeroCuota: 3,
-    mes: "agosto",
-    year: 2023,
-  },
-  {
-    nombre: "Acosta Viviana Argentina",
-    numeroSorteo: 39,
-    plan: "50",
-    montoAdjudicado: 2000000,
-    numeroCuota: 6,
-    mes: "noviembre",
-    year: 2023,
-  },
-  {
-    nombre: "Bazán Moya Maximiliano Gastón",
-    numeroSorteo: 823,
-    plan: "50",
-    montoAdjudicado: 3500000,
-    numeroCuota: 1,
-    mes: "diciembre",
-    year: 2023,
-  },
-  {
-    nombre: "Vargas Carla Roxana",
-    numeroSorteo: 512,
-    plan: "50",
-    montoAdjudicado: 3500000,
-    numeroCuota: 6,
-    mes: "febrero",
-    year: 2024,
-  },
-  {
-    nombre: "Martini Eduardo Jesus",
-    numeroSorteo: 935,
-    plan: "50",
-    montoAdjudicado: 4000000,
-    numeroCuota: 5,
-    mes: "mayo",
-    year: 2024,
-  },
-  {
-    nombre: "Carrizo Sergio Nicolas",
-    numeroSorteo: 555,
-    plan: "50",
-    montoAdjudicado: 1500000,
-    numeroCuota: 10,
-    mes: "junio",
-    year: 2024,
-  },
-  {
-    nombre: "Salinas Rosana Del Carmen",
-    numeroSorteo: 40,
-    plan: "50",
-    montoAdjudicado: 1500000,
-    numeroCuota: 8,
-    mes: "agosto",
-    year: 2024,
-  },
-  {
-    nombre: "Cortez Mónica Beatriz",
-    numeroSorteo: 78,
-    plan: "50",
-    montoAdjudicado: 3000000,
-    numeroCuota: 9,
-    mes: "septiembre",
-    year: 2024,
-  },
-  {
-    nombre: "Peña Nancy Beatriz",
-    numeroSorteo: 476,
-    plan: "50",
-    montoAdjudicado: 9000000,
-    numeroCuota: 1,
-    mes: "octubre",
-    year: 2024,
-  },
-];
+// TUTORIAL = https://benborgers.com/google-sheets-json
+// PLANILLA = https://docs.google.com/spreadsheets/d/1FJ5z6zcc-YF312ZLAnKn-xNUpnqtgFFFRjGJR8KKLp0/edit?usp=sharing
+// BASE = https://opensheet.elk.sh/spreadsheet_id/tab_name
+// URL ADAPTADA = https://opensheet.elk.sh/1FJ5z6zcc-YF312ZLAnKn-xNUpnqtgFFFRjGJR8KKLp0/Adjudicados
 
-const year = Number(Astro.url.searchParams.get("year")) || null;
+const response = await fetch(
+  "https://opensheet.elk.sh/1FJ5z6zcc-YF312ZLAnKn-xNUpnqtgFFFRjGJR8KKLp0/Adjudicados",
+);
+
+const adjudicados = await response.json();
+
+const year = Astro.url.searchParams.get("year") || null;
 const month = Number(Astro.url.searchParams.get("month")) || null;
 const monthText = month ? MONTHS[month] : "";
 
@@ -95,7 +21,9 @@ const monthText = month ? MONTHS[month] : "";
 function fetching(year, month) {
   return adjudicados.filter((adj) => {
     const matchYear = year ? adj.year === year : true;
-    const matchMonth = month ? adj.mes?.toLocaleLowerCase() === MONTHS[month].toLocaleLowerCase() : true;
+    const matchMonth = month
+      ? adj.mes?.toLocaleLowerCase() === MONTHS[month].toLocaleLowerCase()
+      : true;
     return matchYear && matchMonth;
   });
 }

@@ -3,18 +3,16 @@ import { string } from "astro:schema";
 import adjudicados from "../../data/adjudicados.json";
 
 // Función para encontrar el último mes y año
-function getLastAdjudicado(data) {
-  const years = Object.keys(data).sort(); // Ordena los años
-  const lastYear = years[years.length - 1]; // Toma el último año
-  const months = Object.keys(data[lastYear]).sort(
-    (a, b) => Number(a) - Number(b),
-  ); // Ordena los meses numéricamente
-  const lastMonth = months[months.length - 1]; // Toma el último mes
-  return data[lastYear][lastMonth]; // Devuelve el valor del último mes
-}
+const response = await fetch(
+  "https://opensheet.elk.sh/1FJ5z6zcc-YF312ZLAnKn-xNUpnqtgFFFRjGJR8KKLp0/Last",
+);
+const data = await response.json();
+// console.log(data);
 
-const ultimoAdjudicado = getLastAdjudicado(adjudicados);
-
+const ultimoAdjudicado = {
+  mes: (await data[0].Mes) || "buscando...",
+  ganador: (await data[0].Dato) || "buscando...",
+};
 // console.log(ultimoAdjudicado);
 ---
 
