@@ -120,7 +120,7 @@ const telefono = config.empresa.whatsapp;
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("/api/saveConsultas.json", {
+      const response = await fetch("/api/save.json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
