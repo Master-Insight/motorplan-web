@@ -1,16 +1,235 @@
 ---
 import Frame from "@/components/Frame.astro";
+import Bullseye from "@/icons/Bullseye.astro";
+import Eye from "@/icons/Eye.astro";
+import PersonCheck from "@/icons/PersonCheck.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Motorplan">
   <Frame>
-    <div class="h-svh flex items-center justify-center">
-      <div
-        class="p-32 flex bg-secondary items-center justify-center rounded-3xl"
-      >
-        <p class="text-3xl font-bold text-white">SITIO EN CONSTRUCCIÓN</p>
+    <div class="w-full h-80 relative rounded-t-3xl">
+      <img
+        src="images/handsome-elegant-man-car-salon.jpg"
+        class="object-cover w-full h-full absolute rounded-t-3xl"
+      />
+      <div class="absolute inset-0 bg-white bg-opacity-50 rounded-t-3xl"></div>
+      <div class="absolute inset-0">
+        <div class="flex items-center justify-center py-32">
+          <h1
+            class="text-3xl md:text-5xl p-4 font-bold text-primary text-center"
+          >
+            Motorplan - Tu camino hacia el futuro
+          </h1>
+        </div>
       </div>
     </div>
+
+    <!-- Sobre Motorplan -->
+    <section class="py-16 bg-gray-50 container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-16">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Sobre Motorplan</h2>
+          <p class="text-lg text-gray-700 mb-4 text-justify">
+            Motorplan. S.A es una empresa de capitalización y ahorro autorizada
+            por la INSPECCIÓN GENERAL DE JUSTICIA DE LA NACIÓN la cual integra
+            la asociación Argentina de Sociedades de Capitalización. Nuestro
+            objetivo es guiar a nuestro clientes por el mejor camino para que
+            puedan concretar la formación de un capital para su futuro, con una
+            variedad de planes de corto, mediano y largo plazo que se adapten a
+            sus necesidades.
+          </p>
+          <p class="text-lg text-gray-700 text-justify">
+            Nuestra estructura esta nutrida por profesionales de basta
+            experiencia en el rubro, con un eficiente plantel de RRHH que hará
+            posible el desarrollo futuro tanto de nuestros suscriptores como de
+            la empresa.
+          </p>
+          <p class="text-lg text-gray-700 text-justify mt-4">
+            En Motorplan.S.A nuestra prioridad son nuestros clientes.
+          </p>
+        </div>
+        <div
+          class="bg-cover bg-center h-96 bg-[url('/images/handsome-elegant-man-car-salon.jpg')] rounded-3xl"
+          "
+        >
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Misión y Visión -->
+    <section class="relative my-16 text-white p-16 rounded-3xl">
+      <!-- Fondo de gradiente -->
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary-darker bg-no-repeat bg-cover rounded-3xl"
+        style="z-index: 1;"
+      >
+      </div>
+
+      <!-- Imagen en capa superior -->
+      <div
+        class="absolute inset-0 bg-[url('/ui/flechas.svg')] bg-right bg-no-repeat bg-cover opacity-30"
+        style="z-index: 2; background-size: auto 100%; background-position: right center;"
+      >
+      </div>
+
+      <!-- Contenido -->
+      <div class="relative z-10 grid md:grid-cols-2 gap-16">
+        <div>
+          <h3 class="text-2xl font-semibold text-white mb-4">
+            <Bullseye
+              fill="white"
+              width="24"
+              height="24"
+              class="inline-block"
+            /> Misión
+          </h3>
+          <p class="text-lg text-white mb-4">
+            En Motorplan, promovemos la cultura del ahorro, ayudando a nuestros
+            clientes a capitalizar su futuro. Nuestra misión es generar
+            conciencia sobre los beneficios del ahorro y brindarles un servicio
+            cercano, enfocado en sus necesidades.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold text-white mb-4">
+            <Eye fill="white" width="24" height="24" class="inline-block" /> Visión
+          </h3>
+          <p class="text-lg text-white">
+            Buscamos liderar el sector de ahorro y capitalización en Argentina,
+            ofreciendo soluciones innovadoras y eficientes. Nuestra visión es
+            crear espacios donde nuestros clientes encuentren respuestas claras,
+            con compromiso y efectividad en cada paso.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="py-16 bg-gray-50 container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-16">
+        <!-- Imagen de fondo -->
+        <div
+          class="bg-cover bg-right h-full bg-[url('/images/businessman_notebook_laptop_computer.jpg')] rounded-3xl"
+        >
+        </div>
+
+        <!-- Contenido de valores -->
+        <div>
+          <h3 class="text-3xl font-bold text-gray-800 mb-6">
+            Nuestros valores
+          </h3>
+          <ul class="list-none pl-0 space-y-3">
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Integridad:</strong>
+                <p class="texti">
+                  Actuamos con total transparencia y honestidad, garantizando
+                  confianza en cada acción.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Excelencia:</strong>
+                <p class="texti">
+                  Nos esforzamos por brindar siempre un sello de calidad en
+                  todos nuestros servicios.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Respeto:</strong>
+                <p class="texti">
+                  Valoramos la dignidad y el compromiso, fomentando relaciones
+                  basadas en la confianza mutua.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Cooperación:</strong>
+                <p class="texti">
+                  Creemos en el poder del trabajo conjunto, porque Motorplan es
+                  más que una empresa, es una familia.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Honestidad:</strong>
+                <p class="texti">
+                  Nos guiamos por principios éticos sólidos en cada decisión y
+                  acción.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Equidad:</strong>
+                <p class="texti">
+                  Promovemos la igualdad y la justicia en todas nuestras
+                  relaciones internas y externas.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Trabajo en equipo:</strong>
+                <p class="texti">
+                  Nuestro éxito se basa en la sinergia y la colaboración entre
+                  todos los miembros de nuestro equipo.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <p class="mt-6 text-primary-darker text-center">
+            <strong
+              ><em>
+                Respeto <PersonCheck /> - Honestidad <PersonCheck /> - Claridad <PersonCheck
+                /> - Compromiso <PersonCheck />
+              </em></strong
+            >
+          </p>
+        </div>
+      </div>
+    </section>
   </Frame>
 </Layout>
+
+<!-- Definición del bloque de clases -->
+<!-- Estilos -->
+<style>
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    @apply flex items-start;
+  }
+
+  li strong {
+    @apply text-primary-darker font-semibold;
+  }
+
+  li p {
+    @apply text-gray-700 text-sm leading-3;
+  }
+
+  li svg {
+    @apply w-6 h-6 text-primary-dark mr-3 mt-1;
+  }
+
+  li .texti {
+    @apply italic;
+  }
+</style>
