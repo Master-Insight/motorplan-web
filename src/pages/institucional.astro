@@ -2,6 +2,7 @@
 import Frame from "@/components/Frame.astro";
 import Bullseye from "@/icons/Bullseye.astro";
 import Eye from "@/icons/Eye.astro";
+import PersonCheck from "@/icons/PersonCheck.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
@@ -24,39 +25,34 @@ import Layout from "@/layouts/Layout.astro";
       </div>
     </div>
 
-    <section id="about" class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-16">
-          <div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">
-              Sobre Motorplan
-            </h2>
-            <p class="text-lg text-gray-700 mb-4 text-justify">
-              Motorplan. S.A es una empresa de capitalización y ahorro
-              autorizada por la INSPECCIÓN GENERAL DE JUSTICIA DE LA NACIÓN la
-              cual integra la asociación Argentina de Sociedades de
-              Capitalización. Nuestro objetivo es guiar a nuestro clientes por
-              el mejor camino para que puedan concretar la formación de un
-              capital para su futuro, con una variedad de planes de corto,
-              mediano y largo plazo que se adapten a sus necesidades.
-            </p>
-            <p class="text-lg text-gray-700 text-justify">
-              Nuestra estructura esta nutrida por profesionales de basta
-              experiencia en el rubro, con un eficiente plantel de RRHH que hará
-              posible el desarrollo futuro tanto de nuestros suscriptores como
-              de la empresa.
-            </p>
-            <p class="text-lg text-gray-700 text-justify mt-4">
-              En Motorplan.S.A nuestra prioridad son nuestros clientes.
-            </p>
-          </div>
-          <div>
-            <div
-              class="bg-cover bg-center h-96"
-              style="background-image: url('/images/handsome-elegant-man-car-salon.jpg');"
-            >
-            </div>
-          </div>
+    <!-- Sobre Motorplan -->
+    <section class="py-16 bg-gray-50 container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-16">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Sobre Motorplan</h2>
+          <p class="text-lg text-gray-700 mb-4 text-justify">
+            Motorplan. S.A es una empresa de capitalización y ahorro autorizada
+            por la INSPECCIÓN GENERAL DE JUSTICIA DE LA NACIÓN la cual integra
+            la asociación Argentina de Sociedades de Capitalización. Nuestro
+            objetivo es guiar a nuestro clientes por el mejor camino para que
+            puedan concretar la formación de un capital para su futuro, con una
+            variedad de planes de corto, mediano y largo plazo que se adapten a
+            sus necesidades.
+          </p>
+          <p class="text-lg text-gray-700 text-justify">
+            Nuestra estructura esta nutrida por profesionales de basta
+            experiencia en el rubro, con un eficiente plantel de RRHH que hará
+            posible el desarrollo futuro tanto de nuestros suscriptores como de
+            la empresa.
+          </p>
+          <p class="text-lg text-gray-700 text-justify mt-4">
+            En Motorplan.S.A nuestra prioridad son nuestros clientes.
+          </p>
+        </div>
+        <div
+          class="bg-cover bg-center h-96 bg-[url('/images/handsome-elegant-man-car-salon.jpg')] rounded-3xl"
+          "
+        >
         </div>
       </div>
     </section>
@@ -109,38 +105,131 @@ import Layout from "@/layouts/Layout.astro";
       </div>
     </section>
 
-    <section id="how-it-works" class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-16">
-          <div>
-            <i
-              class="icon-custom icon-50 far fa-question-circle text-4xl text-primary mb-4"
-            ></i>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
-              ¿Cómo funciona?
-            </h3>
-            <p class="text-lg text-gray-700">
-              Suscríbete a nuestros planes de capitalización de vehículos y
-              comienza a ahorrar para tu auto o moto. Cada mes, realiza tus
-              aportes y participa en sorteos para obtener tu vehículo de manera
-              anticipada.
-            </p>
-          </div>
-          <div>
-            <i
-              class="icon-custom icon-50 far fa-check-circle text-4xl text-primary mb-4"
-            ></i>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
-              ¿Cómo acceder?
-            </h3>
-            <p class="text-lg text-gray-700">
-              Puedes acceder a nuestros planes a través de nuestra red de
-              agencias oficiales, distribuidas en todo el país. ¡Es el momento
-              perfecto para hacer realidad tu sueño!
-            </p>
-          </div>
+    <!-- Valores -->
+    <section class="py-16 bg-gray-50 container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-16">
+        <!-- Imagen de fondo -->
+        <div
+          class="bg-cover bg-right h-full bg-[url('/images/businessman_notebook_laptop_computer.jpg')] rounded-3xl"
+        >
+        </div>
+
+        <!-- Contenido de valores -->
+        <div>
+          <h3 class="text-3xl font-bold text-gray-800 mb-6">
+            Nuestros valores
+          </h3>
+          <ul class="list-none pl-0 space-y-3">
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Integridad:</strong>
+                <p class="texti">
+                  Actuamos con total transparencia y honestidad, garantizando
+                  confianza en cada acción.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Excelencia:</strong>
+                <p class="texti">
+                  Nos esforzamos por brindar siempre un sello de calidad en
+                  todos nuestros servicios.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Respeto:</strong>
+                <p class="texti">
+                  Valoramos la dignidad y el compromiso, fomentando relaciones
+                  basadas en la confianza mutua.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Cooperación:</strong>
+                <p class="texti">
+                  Creemos en el poder del trabajo conjunto, porque Motorplan es
+                  más que una empresa, es una familia.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Honestidad:</strong>
+                <p class="texti">
+                  Nos guiamos por principios éticos sólidos en cada decisión y
+                  acción.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Equidad:</strong>
+                <p class="texti">
+                  Promovemos la igualdad y la justicia en todas nuestras
+                  relaciones internas y externas.
+                </p>
+              </div>
+            </li>
+            <li>
+              <PersonCheck />
+              <div>
+                <strong>Trabajo en equipo:</strong>
+                <p class="texti">
+                  Nuestro éxito se basa en la sinergia y la colaboración entre
+                  todos los miembros de nuestro equipo.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <p class="mt-6 text-primary-darker text-center">
+            <strong
+              ><em>
+                Respeto <PersonCheck /> - Honestidad <PersonCheck /> - Claridad <PersonCheck
+                /> - Compromiso <PersonCheck />
+              </em></strong
+            >
+          </p>
         </div>
       </div>
     </section>
   </Frame>
 </Layout>
+
+<!-- Definición del bloque de clases -->
+<!-- Estilos -->
+<style>
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    @apply flex items-start;
+  }
+
+  li strong {
+    @apply text-primary-darker font-semibold;
+  }
+
+  li p {
+    @apply text-gray-700 text-sm leading-3;
+  }
+
+  li svg {
+    @apply w-6 h-6 text-primary-dark mr-3 mt-1;
+  }
+
+  li .texti {
+    @apply italic;
+  }
+</style>
