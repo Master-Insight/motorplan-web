@@ -124,9 +124,3 @@ export const tailwindSizes = {
   full: 'w-full h-full', // Full Size (100%)
 };
 */
-
-export const configEnv = {
-  googleSheetsId: process.env.GOOGLE_SHEETS_ID,
-  serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  privateKey: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"), // Importante para manejar saltos de línea
-}
