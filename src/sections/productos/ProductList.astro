@@ -1,0 +1,29 @@
+---
+import ProductCard from "./ProductCard.astro"
+
+const products = [
+  {
+    imageUrl: "/placeholder.svg?height=300&width=400",
+    name: "Producto Premium",
+    price: 999999,
+    productUrl: "/productos/1",
+  },
+  {
+    imageUrl: "/placeholder.svg?height=300&width=400",
+    name: "Producto Especial",
+    price: 888888,
+    productUrl: "/productos/2",
+  },
+  {
+    imageUrl: "/placeholder.svg?height=300&width=400",
+    name: "Producto Exclusivo",
+    price: 777777,
+    productUrl: "/productos/3",
+  },
+]
+
+---
+
+<div class="w-4/5 grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-8">
+  {products.map((product) => (<ProductCard item={product} />))}
+</div>
