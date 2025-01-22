@@ -16,7 +16,6 @@
     "@types/react-dom": "^19.0.2",
     "astro": "5.0.3",
     "atropos": "^2.0.2",
-    "dotenv": "^16.4.7",
     "googleapis": "^144.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

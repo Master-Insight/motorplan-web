@@ -1,4 +1,4 @@
-import { configEnv } from 'config';
+import {GOOGLE_SHEETS_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY} from "astro:env/server"
 import { google } from 'googleapis';
 
 // Api: POST : escritura de datos en la planilla HOJA "Consultas"
@@ -20,9 +20,9 @@ export const POST = async ({ request }) => {
 
     // Autenticación con Google Sheets
     const auth = new google.auth.JWT(
-      configEnv.serviceAccountEmail,
+      GOOGLE_SERVICE_ACCOUNT_EMAIL,
       null,
-      configEnv.privateKey.replace(/\\n/g, '\n'), // Ajuste para claves privadas
+      GOOGLE_PRIVATE_KEY, // Ajuste para claves privadas
       ['https://www.googleapis.com/auth/spreadsheets'],
     );
 
@@ -30,7 +30,7 @@ export const POST = async ({ request }) => {
 
     // Insertar datos en la hoja
     await sheets.spreadsheets.values.append({
-      spreadsheetId: configEnv.googleSheetsId,
+      spreadsheetId: GOOGLE_SHEETS_ID,
       range: 'Consultas!A:G', // Ajusta según tu hoja
       valueInputOption: 'USER_ENTERED',
       requestBody: {
