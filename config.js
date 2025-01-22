@@ -1,6 +1,4 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
-import dotenv from "dotenv";
-dotenv.config();
 
 export const config = {
   // Gama de colores
