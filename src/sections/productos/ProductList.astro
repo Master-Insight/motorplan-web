@@ -1,27 +1,12 @@
 ---
+import {GOOGLE_SHEETS_PRODUCTS_ID, SHEET_PRODUCTS_KEY} from "astro:env/server"
 import ProductCard from "./ProductCard.astro"
+import { convertToJSON } from "@/lib/convert-to-json"
 
-const products = [
-  {
-    imageUrl: "/placeholder.svg?height=300&width=400",
-    name: "Producto Premium",
-    price: 999999,
-    productUrl: "/productos/1",
-  },
-  {
-    imageUrl: "/placeholder.svg?height=300&width=400",
-    name: "Producto Especial",
-    price: 888888,
-    productUrl: "/productos/2",
-  },
-  {
-    imageUrl: "/placeholder.svg?height=300&width=400",
-    name: "Producto Exclusivo",
-    price: 777777,
-    productUrl: "/productos/3",
-  },
-]
+const collection = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_PRODUCTS_ID}/values/Productos?key=${SHEET_PRODUCTS_KEY}`)
+const data = await collection.json()
 
+const products = convertToJSON(data.values)
 ---
 
 <div class="w-4/5 grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-8">
