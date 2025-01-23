@@ -3,7 +3,7 @@ const {item} = Astro.props
 const {slug, descripcion, cuotasdesde, contratoasociado, foto, valornominal} = item
 ---
 
-<a href={`/producto/${slug}`} class="group bg-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:border hover:border-slate-200">
+<a href={`/producto/${slug}`} class="group bg-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-slate-200">
   <div class="relative h-[300px] w-full">
     <img
       src={foto || "/placeholder.svg"}
