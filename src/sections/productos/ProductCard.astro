@@ -1,6 +1,6 @@
 ---
 const {item} = Astro.props
-const {slug, descripcion, cuotasdesde, contratoasociado, foto, valornominal} = item
+const {slug, descripcion, cuotasdesde, foto} = item
 ---
 
 <a 
@@ -12,6 +12,7 @@ const {slug, descripcion, cuotasdesde, contratoasociado, foto, valornominal} = i
       src={foto || "/images/placeholder.svg"}
       alt={descripcion}
       class="object-contain rounded-2xl"
+      transition:name={`img-${slug}`}
     />
   </div>
 
