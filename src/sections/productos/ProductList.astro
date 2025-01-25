@@ -1,12 +1,6 @@
 ---
-import {GOOGLE_SHEETS_PRODUCTS_ID, SHEET_PRODUCTS_KEY} from "astro:env/server"
 import ProductCard from "@/sections/productos/ProductCard.astro"
-import { convertToJSON } from "@/lib/convert-to-json"
 import {products} from "@/lib/fetchin-data"
-
-const collection = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEETS_PRODUCTS_ID}/values/Productos?key=${SHEET_PRODUCTS_KEY}`)
-const data = await collection.json()
-
 ---
 
 <div class="w-4/5 grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-12">
