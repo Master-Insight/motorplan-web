@@ -1,9 +1,9 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import Layout from "@/layouts/Layout.astro";
 import Frame from "@/components/Frame.astro";
-import {products} from "@/lib/fetchin-data"
+import { products } from "@/lib/fetchin-data";
 
-export const prerender = true
+export const prerender = true;
 
 export async function getStaticPaths() {
   return products.map((product) => ({
@@ -13,7 +13,15 @@ export async function getStaticPaths() {
 }
 const { product } = Astro.props;
 
-const {descripcion, foto, slug, Clasificador, cuotasdesde, valornominal, contratoasociado} = product
+const {
+  descripcion,
+  foto,
+  slug,
+  Clasificador,
+  cuotasdesde,
+  valornominal,
+  contratoasociado,
+} = product;
 ---
 
 <Layout title={`Motorplan | ${descripcion}`}>
@@ -25,7 +33,7 @@ const {descripcion, foto, slug, Clasificador, cuotasdesde, valornominal, contrat
       {
         foto && (
           <img
-            src={foto}  
+            src={foto}
             alt={`Imagen de ${descripcion}`}
             class="w-full lg:w-1/2 h-[70vh] object-cover rounded-2xl shadow-md aspect-auto"
             transition:name={`img-${slug}`}
@@ -50,21 +58,21 @@ const {descripcion, foto, slug, Clasificador, cuotasdesde, valornominal, contrat
           >
             {descripcion}
           </h3>
-          {Clasificador && <p class="text-lg text-gray-600 mb-4">{Clasificador}</p>}
+          {
+            Clasificador && (
+              <p class="text-lg text-gray-600 mb-4">{Clasificador}</p>
+            )
+          }
 
           <!-- Valores de ejemplo -->
           <div class="text-sm space-y-2">
             <p class="font-medium">
               Ejemplo de cuota:
-              <span class="text-gray-800"
-                >${cuotasdesde}</span
-              >
+              <span class="text-gray-800">${cuotasdesde}</span>
             </p>
             <p class="italic text-gray-500">
               Si tu compra es de
-              <span class="text-gray-800"
-                >$ {valornominal}</span
-              >
+              <span class="text-gray-800">$ {valornominal}</span>
             </p>
           </div>
         </div>
@@ -151,7 +159,6 @@ const {descripcion, foto, slug, Clasificador, cuotasdesde, valornominal, contrat
     </div>
   </Frame>
 </Layout>
-
 
 <script is:inline>
   async function handleSubmitConsulta(event) {
