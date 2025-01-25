@@ -1,13 +1,20 @@
 ---
-import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro"
+import {products} from "@/lib/fetchin-data"
 
-export  const getStaticPaths = (() => {
-  
-  return [];
-}) satisfies GetStaticPaths;
+export const prerender = true
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+const { product } = Astro.props;
+
+const {descripcion} = product
 ---
 
-<Layout title="">
+<Layout title={`Motorplan | ${descripcion}`}>
   
 </Layout>
