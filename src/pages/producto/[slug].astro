@@ -1,13 +1,180 @@
 ---
-import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro"
+import Frame from "@/components/Frame.astro";
+import {products} from "@/lib/fetchin-data"
 
-export  const getStaticPaths = (() => {
-  
-  return [];
-}) satisfies GetStaticPaths;
+export const prerender = true
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+const { product } = Astro.props;
+
+const {descripcion, foto, slug, Clasificador, cuotasdesde, valornominal, contratoasociado} = product
 ---
 
-<Layout title="">
-  
+<Layout title={`Motorplan | ${descripcion}`}>
+  <Frame>
+    <div
+      class="rounded-2xl flex flex-wrap lg:flex-nowrap items-start gap-6 bg-slate-100 p-6"
+    >
+      <!-- Imagen del producto -->
+      {
+        foto && (
+          <img
+            src={foto}  
+            alt={`Imagen de ${descripcion}`}
+            class="w-full lg:w-1/2 h-[70vh] object-cover rounded-2xl shadow-md aspect-auto"
+            transition:name={`img-${slug}`}
+          />
+        )
+      }
+
+      <!-- Área de detalles -->
+      <div class="flex-1 flex flex-col justify-between gap-6 lg:self-stretch">
+        <!-- Enlace para volver al listado -->
+        <a
+          href="/producto"
+          class="text-primary hover:text-primary-dark transition font-medium underline"
+        >
+          ← Volver al listado
+        </a>
+
+        <div>
+          <h3
+            class="text-4xl font-bold text-primary mb-2"
+            transition:name={`title-${slug}`}
+          >
+            {descripcion}
+          </h3>
+          {Clasificador && <p class="text-lg text-gray-600 mb-4">{Clasificador}</p>}
+
+          <!-- Valores de ejemplo -->
+          <div class="text-sm space-y-2">
+            <p class="font-medium">
+              Ejemplo de cuota:
+              <span class="text-gray-800"
+                >${cuotasdesde}</span
+              >
+            </p>
+            <p class="italic text-gray-500">
+              Si tu compra es de
+              <span class="text-gray-800"
+                >$ {valornominal}</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Si llevara descripcion -->
+        <!-- <div class="prose">{body}</div> -->
+
+        <!-- Mostrar PDF del contrato -->
+        {
+          contratoasociado ? (
+            <div class="mt-8 p-4 bg-white shadow-lg rounded-lg flex flex-col items-center">
+              <h4 class="text-xl font-semibold mb-2">Contrato asociado:</h4>
+              <a
+                href={contratoasociado}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-primary underline hover:text-primary-dark">
+                Descargar contrato (PDF)
+              </a>
+            </div>
+          ) : (
+            <span />
+          )
+        }
+
+        <!-- Formulario de consulta -->
+        <div class="mt-8 p-4 bg-white shadow-lg rounded-lg">
+          <h4 class="text-xl font-semibold mb-4">Dejanos tu consulta</h4>
+          <form
+            id="consultaForm"
+            class="space-y-4"
+            onsubmit="handleSubmitConsulta(event)"
+          >
+            <input type="hidden" name="esProducto" value="si" hidden />
+
+            <input
+              class="w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              type="text"
+              name="nombre"
+              placeholder="Nombre*"
+              required
+            />
+
+            <input
+              class="w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+
+            <input
+              class="w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              type="tel"
+              name="telefono"
+              placeholder="Teléfono*"
+              required
+            />
+
+            <input
+              class="w-full bg-gray-300 rounded-lg border-gray-200 p-3"
+              type="text"
+              name="asunto"
+              value={`Consulta sobre: ${descripcion}`}
+              readonly
+            />
+
+            <textarea
+              class="w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              rows="4"
+              name="mensaje"
+              placeholder="Déjanos tu consulta*"
+              required></textarea>
+
+            <button
+              type="submit"
+              class="w-full rounded-lg bg-primary px-5 py-3 font-medium text-white sm:w-auto"
+            >
+              Enviar consulta
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- Fin area detalles -->
+    </div>
+  </Frame>
 </Layout>
+
+
+<script is:inline>
+  async function handleSubmitConsulta(event) {
+    event.preventDefault();
+
+    const form = document.getElementById("consultaForm");
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/save.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        window.location.href = "/graciasportucontacto";
+      } else {
+        alert("Error al enviar la consulta.");
+      }
+    } catch (error) {
+      alert("Ocurrió un error inesperado: " + error.message);
+    }
+  }
+</script>
