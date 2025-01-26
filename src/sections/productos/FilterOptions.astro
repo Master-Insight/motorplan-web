@@ -1,0 +1,13 @@
+---
+import Filter from "@/components/Filter.astro";
+
+const { data } = Astro.props
+const options = data.map((option: { Clasificador: any }) => {
+  return option.Clasificador
+})
+const uniqueValues = Array.from(new Set(options.filter(item => item !== '')))
+---
+
+<section class="w-4/5 lg:w-2/5 flex flex-wrap gap-5 mb-16">
+  {uniqueValues.map((option) => (<Filter title={option}/>))}
+</section>
