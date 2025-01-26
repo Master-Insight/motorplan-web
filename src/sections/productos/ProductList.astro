@@ -1,8 +1,9 @@
 ---
 import ProductCard from "@/sections/productos/ProductCard.astro"
-import {products} from "@/lib/fetchin-data"
+
+const {data} = Astro.props
 ---
 
 <div class="w-4/5 grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-12">
-  {products.map((product) => (<ProductCard item={product} />))}
+  {data.map((product) => (<ProductCard item={product} />))}
 </div>
