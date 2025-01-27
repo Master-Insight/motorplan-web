@@ -4,7 +4,52 @@ const {title} = Astro.props
 ---
 
 <div>
-  <button class="w-full border border-tertiary text-tertiary hover:bg-tertiary hover:text-white font-medium text-sm py-1 px-2 rounded-lg text-center transition-colors flex justify-center">
+  <button 
+    class="btn-brand w-full border border-tertiary text-tertiary hover:bg-tertiary hover:text-white font-medium text-sm py-1 px-2 rounded-lg text-center transition-colors flex justify-center"
+    data-brand={title}
+  >
     {title}
   </button>
 </div>
+
+<style>
+  .btn-active {
+    @apply bg-tertiary text-white
+  }
+</style>
+
+<script>
+  import { $$ } from "@/lib/dom-selector";
+
+  document.addEventListener('astro:page-load', () => {
+    const btnBrand = $$(".btn-brand")
+  
+    const currentUrl = new URL(window.location.href)
+  
+    btnBrand.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle("btn-active")
+  
+        const value = btn.dataset.brand
+  
+        currentUrl.searchParams.has("marca") && currentUrl.searchParams.get("marca") === value ?
+          currentUrl.searchParams.delete("marca") :
+          currentUrl.searchParams.set("marca", value)
+        
+        if (value === 'TODAS') currentUrl.searchParams.delete("marca")
+        
+        window.location.href = currentUrl.toString()
+      })
+    })
+  
+    if (currentUrl.searchParams.has("marca")) {
+      const marca = currentUrl.searchParams.get("marca")
+      const allBtn = [...btnBrand]
+      const activeBtn = allBtn.find((btn) => btn.dataset.brand === marca)
+      if (activeBtn) {
+        activeBtn.classList.add('btn-active')
+      }
+    }
+  })
+
+</script>
