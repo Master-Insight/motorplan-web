@@ -4,6 +4,6 @@ import ProductCard from "@/sections/productos/ProductCard.astro"
 const {data} = Astro.props
 ---
 
-<div class="w-4/5 grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-12">
+<div class="lg:w-4/5 w-full grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-12 ">
   {data.map((product) => (<ProductCard item={product} />))}
 </div>
