@@ -29,6 +29,7 @@ function fetching(year, month) {
 }
 
 const listed = year !== null ? fetching(year, month) : adjudicados;
+console.log(listed);
 ---
 
 <section class="py-4 mt-6">
@@ -51,7 +52,7 @@ const listed = year !== null ? fetching(year, month) : adjudicados;
             <td class="p-2">{item.numeroCuota}</td>
             <td class="p-2">{item.nombre}</td>
             <td class="p-2">Plan {item.plan}</td>
-            <td class="p-2">{formatCurrency(item.montoAdjudicado)}</td>
+            <td class="p-2">{"$ " + item.montoAdjudicado}</td>
           </tr>
         ))
       }
