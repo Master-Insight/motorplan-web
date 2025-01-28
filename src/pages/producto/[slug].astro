@@ -53,25 +53,25 @@ const {
 
         <div>
           <h3
-            class="text-4xl font-bold text-primary mb-2"
+            class="text-5xl font-bold text-primary mb-2"
             transition:name={`title-${slug}`}
           >
             {descripcion}
           </h3>
-          {
+          <!-- {
             Clasificador && (
               <p class="text-lg text-gray-600 mb-4">{Clasificador}</p>
             )
-          }
+          } -->
 
           <!-- Valores de ejemplo -->
-          <div class="text-sm space-y-2">
-            <p class="font-medium">
-              Ejemplo de cuota:
+          <div class="space-y-2">
+            <p class="font-medium text-3xl">
+              CUOTA:
               <span class="text-gray-800">${cuotasdesde}</span>
             </p>
-            <p class="italic text-gray-500">
-              Si tu compra es de
+            <p class="italic text-xl text-gray-500">
+              Valor nominal:
               <span class="text-gray-800">$ {valornominal}</span>
             </p>
           </div>
@@ -79,24 +79,6 @@ const {
 
         <!-- Si llevara descripcion -->
         <!-- <div class="prose">{body}</div> -->
-
-        <!-- Mostrar PDF del contrato -->
-        {
-          contratoasociado ? (
-            <div class="mt-8 p-4 bg-white shadow-lg rounded-lg flex flex-col items-center">
-              <h4 class="text-xl font-semibold mb-2">Contrato asociado:</h4>
-              <a
-                href={`/contratos/${contratoasociado}.pdf`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-primary underline hover:text-primary-dark">
-                Descargar contrato (PDF)
-              </a>
-            </div>
-          ) : (
-            <span />
-          )
-        }
 
         <!-- Formulario de consulta -->
         <div class="mt-8 p-4 bg-white shadow-lg rounded-lg">
@@ -154,7 +136,26 @@ const {
             </button>
           </form>
         </div>
+
+        <!-- Mostrar PDF del contrato -->
+        {
+          contratoasociado ? (
+            <div class="mt-2 p-4 bg-white shadow-lg rounded-lg flex justify-center items-baseline gap-2">
+              <h4 class="font-semibold mb-2">Ver contrato:</h4>
+              <a
+                href={`/contratos/${contratoasociado}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-primary underline hover:text-primary-dark">
+                hacer clic aqui
+              </a>
+            </div>
+          ) : (
+            <span />
+          )
+        }
       </div>
+
       <!-- Fin area detalles -->
     </div>
   </Frame>
