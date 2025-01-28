@@ -12,6 +12,11 @@ export default defineConfig({
   output: "server", // se cambio de static a server
   integrations: [tailwind(), react()],
   adapter: vercel(),
+  experimental: {
+    svg: {
+      mode: "sprite",
+    },
+  },
   env: {
     schema: {
       CORREO: envField.string({context: "server", access: "secret"}),
