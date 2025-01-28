@@ -11,7 +11,9 @@ const telefono = config.empresa.whatsapp;
       <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
         <form id="contactForm" class="space-y-4" onsubmit="handleSubmit(event)">
           <div>
-            <label for="nombre">Nombre*</label>
+            <label for="nombre" class="text-lg font-medium text-gray-700"
+              >Nombre*</label
+            >
             <input
               class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
               type="text"
@@ -23,7 +25,9 @@ const telefono = config.empresa.whatsapp;
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label class="" for="email">Dirección de email</label>
+              <label for="email" class="text-lg font-medium text-gray-700"
+                >Dirección de email</label
+              >
               <input
                 class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
                 type="email"
@@ -33,7 +37,9 @@ const telefono = config.empresa.whatsapp;
             </div>
 
             <div>
-              <label class="" for="telefono">Número de teléfono*</label>
+              <label for="telefono" class="text-lg font-medium text-gray-700"
+                >Número de teléfono*</label
+              >
               <input
                 class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
                 type="tel"
@@ -45,7 +51,9 @@ const telefono = config.empresa.whatsapp;
           </div>
 
           <div>
-            <label for="asunto">Asunto*</label>
+            <label for="asunto" class="text-lg font-medium text-gray-700"
+              >Asunto*</label
+            >
             <input
               class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
               type="text"
@@ -56,7 +64,9 @@ const telefono = config.empresa.whatsapp;
           </div>
 
           <div>
-            <label class="" for="mensaje">Déjanos tu consulta*</label>
+            <label for="mensaje" class="text-lg font-medium text-gray-700"
+              >Déjanos tu consulta*</label
+            >
             <textarea
               class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
               rows="8"
