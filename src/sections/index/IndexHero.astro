@@ -1,24 +1,26 @@
 ---
+import Hero1 from "@/components/images/Hero1.img.astro";
 import CardAdjudicados from "./CardAdjudicados.astro";
 ---
 
 <div class="relative h-[600px] flex items-center justify-center rounded-3xl">
-  <img
-    src="/images/handsome-elegant-man-car-salon.jpg"
-    class="object-cover w-full h-full absolute rounded-3xl"
-  />
+  <Hero1 class="object-cover w-full h-full absolute rounded-3xl" />
   <div class="absolute inset-0 bg-white bg-opacity-40 rounded-3xl"></div>
   <div
     class="relative z-10 text-center text-white rounded-3xl flex justify-between flex-col md:flex-row"
   >
-    <div>
-      <h1 class="text-5xl font-bold mb-4">Conseguí con Motorplan</h1>
-      <p class="text-xl mb-8">Tu camino hacia la adquisición soñada</p>
+    <div class="px-8">
+      <h1 class="text-5xl font-bold mb-4 text-secondary">
+        Alcanzá tus sueños con Motorplan
+      </h1>
+      <p class="text-xl mb-8 text-secondary">
+        El plan ideal para conseguir lo que siempre soñaste
+      </p>
       <a
         href="/plan"
         class="inline-block bg-primary hover:saturate-150 hover:scale-105 transition-all duration-300 px-6 py-4 rounded-lg"
       >
-        Más información
+        Conocé más
       </a>
     </div>
     <div>

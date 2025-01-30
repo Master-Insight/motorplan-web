@@ -1,0 +1,17 @@
+---
+import ProductCard from "@/sections/productos/ProductCard.astro"
+
+const {data} = Astro.props
+const marca = Astro.url.searchParams.get("marca")
+---
+
+<div class="lg:w-4/5 w-full grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-12 ">
+  {
+    marca ?
+    data
+      .filter(prod => prod.Clasificador === marca)
+      .map((product) => (<ProductCard item={product} />))
+    :
+    data.map((product) => (<ProductCard item={product} />))
+  }
+</div>

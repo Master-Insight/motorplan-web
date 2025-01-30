@@ -1,34 +1,33 @@
 ---
-import Card from "@/components/Card.astro"
+import Card from "@/components/Card.astro";
 
 const cardsContent = [
   {
     title: "Planes Flexibles",
-    description: "Ofrecemos planes de hasta 300 cuotas mensuales, adaptados a tus necesidades y presupuesto.",
+    description:
+      "Elegí entre planes de hasta 300 cuotas, pensados para adaptarse a tu bolsillo y necesidades.",
   },
   {
     title: "Sorteos Mensuales",
-    description: "Participa en nuestros sorteos mensuales y ten la oportunidad de adjudicar anticipadamente tu capital.",
+    description:
+      "Participá en sorteos mensuales y adelantá la adjudicación de tu vehículo soñado.",
   },
   {
-    title: "Red Nacional",
-    description: "Contamos con una amplia red de Agencias Oficiales y Productores Asesores Independientes en todo el país.",
-  }
-]
-
+    title: "Cobertura Nacional",
+    description:
+      "Estamos presentes en todo el país con Agencias Oficiales y asesores que te acompañan en cada paso.",
+  },
+];
 ---
+
 <section class="grid md:grid-cols-3 gap-8 my-16">
   {
-    cardsContent.map(({title, description}) => (
+    cardsContent.map(({ title, description }) => (
       <Card
-        title={title} 
-        class:list={`hover:border-black transition-all duration-200 `}
-      >
-        <p class="text-sm text-gray-500">
-          {description}
-        </p>
+        title={title}
+        class:list={`hover:border-black transition-all duration-200`}>
+        <p class="text-sm text-gray-500">{description}</p>
       </Card>
     ))
   }
-  
 </section>

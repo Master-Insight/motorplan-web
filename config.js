@@ -1,6 +1,5 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 
-
 export const config = {
   // Gama de colores
   colors: [

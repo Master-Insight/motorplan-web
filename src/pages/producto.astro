@@ -1,0 +1,20 @@
+---
+import Frame from "@/components/Frame.astro";
+import Layout from "@/layouts/Layout.astro";
+import FilterOptions from "@/sections/productos/FilterOptions.astro";
+import ProductList from "@/sections/productos/ProductList.astro";
+import {products} from "@/lib/fetchin-data";
+---
+
+<Layout title="Nuestros Planes">
+  <Frame>
+    <!-- TITLES -->
+    <div class="flex flex-col w-full p-12 text-center">
+      <h2 class="text-3xl">Filtrar por marca</h2>
+    </div>
+
+    <FilterOptions data={products}/>
+    <!-- LIST -->
+    <ProductList data={products} />
+  </Frame>
+</Layout>
