@@ -7,7 +7,6 @@ type Plan = CollectionEntry<"planes">;
 
 // Obtener la colección
 const PLANES = await getCollection("planes");
-// console.log(PLANES);
 
 // Ordenar los planes según el campo "order"
 PLANES.sort((a, b) => a.data.order - b.data.order);
