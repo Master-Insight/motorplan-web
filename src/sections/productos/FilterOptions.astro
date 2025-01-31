@@ -9,6 +9,6 @@ const uniqueValues = Array.from(new Set(options.filter(item => item !== '')))
 ---
 
 <section class="grid lg:grid-cols-5 grid-cols-3 gap-y-6 gap-x-4 mb-16">
-  <Filter title="TODAS" />
+  {uniqueValues.length >= 1 ? <Filter title="TODAS" /> : null}
   {uniqueValues.map((option) => (<Filter title={option}/>))}
 </section>
