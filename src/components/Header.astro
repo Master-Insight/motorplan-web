@@ -43,6 +43,7 @@ const currentPath =
 >
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
       <a
         href="/"
         class="text-xl font-bold text-highlight flex items-center space-x-2"
@@ -53,77 +54,212 @@ const currentPath =
           class="w-auto h-20 pt-1"
         />
       </a>
+
+      <!-- Barra de navegación -->
       <nav class="hidden md:block">
+        <!-- Menú con dropdown -->
         <ul class="flex space-x-4 items-center pb-2">
-          {
-            pages.map((link) => (
+          <!-- Menú de navegación -->
+          <li class="relative group">
+            <a
+              href="/"
+              class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
+              >Inicio</a
+            >
+          </li>
+
+          <li class="relative group">
+            <a
+              href="#"
+              class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
+              >Planes</a
+            >
+            <!-- Menú desplegable para desktop -->
+            <ul
+              class="absolute left-0 mt-2 space-y-1 bg-white rounded-md shadow-lg hidden"
+              id="desktopDropdown"
+            >
               <li>
                 <a
-                  href={link.href}
-                  class:list={[
-                    "items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative",
-                    {
-                      "hover:after:absolute hover:after:bottom-[-2px] hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-primary":
-                        !link.isProfile,
-                      "border border-black rounded-lg py-2 px-3 hover:border-secondary-light":
-                        link.isProfile,
-                      "after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-secondary-light":
-                        currentPath === link.href,
-                    },
-                  ]}>
-                  {link.name}
-                </a>
+                  href="/producto"
+                  class="block py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  >Auto</a
+                >
               </li>
-            ))
-          }
+              <li>
+                <a
+                  href="/producto"
+                  class="block py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  >Usado</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/producto"
+                  class="block py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  >Dinero</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/producto"
+                  class="block py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  >Moto</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/producto"
+                  class="block py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  >Pack Hogar</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="relative">
+            <a
+              href="/adjudicados"
+              class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
+              >Adjudicados</a
+            >
+          </li>
+
+          <li class="relative">
+            <a
+              href="/institucional"
+              class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
+              >Institucional</a
+            >
+          </li>
+
+          <li class="relative">
+            <a
+              href="/contacto"
+              class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
+              >Contacto</a
+            >
+          </li>
+
+          <li class="relative">
+            <a
+              href="#"
+              class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
+              >Mi Situación</a
+            >
+          </li>
         </ul>
       </nav>
+
+      <!-- Botón del menú móvil (oculto en pantallas medianas y grandes) -->
       <button id="menuToggle" class="md:hidden" aria-label="Toggle Menu">
         <HamburgerIcon />
       </button>
     </div>
   </div>
 
-  <!-- Menú mobile -->
+  <!-- Menú móvil -->
   <div
     class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
     id="mobileMenu"
   >
     <nav class="px-4 pt-2 pb-4 bg-white">
       <ul class="space-y-2">
-        {
-          pages.map((link) => (
+        <!-- Menú de navegación para móvil -->
+        <li>
+          <a
+            href="/"
+            class="block py-2 px-4 text-sm font-medium transition-colors"
+            >Inicio</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="block py-2 px-4 text-sm font-medium transition-colors"
+            >Planes</a
+          >
+          <ul class="ml-4 space-y-1 mt-1 hidden group-hover:block">
             <li>
               <a
-                href={link.href}
-                class:list={[
-                  `block py-2 px-4 text-sm font-medium transition-colors`,
-                  {
-                    "text-white bg-secondary-lighter rounded-lg":
-                      currentPath === link.href,
-                    "font-bold": link.isProfile,
-                  },
-                ]}>
-                {link.name}
-              </a>
+                href="/producto"
+                class="block py-2 px-4 text-sm font-medium transition-colors hover:bg-gray-100"
+                >Auto</a
+              >
             </li>
-          ))
-        }
+            <li>
+              <a
+                href="/producto"
+                class="block py-2 px-4 text-sm font-medium transition-colors hover:bg-gray-100"
+                >Usado</a
+              >
+            </li>
+            <li>
+              <a
+                href="/producto"
+                class="block py-2 px-4 text-sm font-medium transition-colors hover:bg-gray-100"
+                >Dinero</a
+              >
+            </li>
+            <li>
+              <a
+                href="/producto"
+                class="block py-2 px-4 text-sm font-medium transition-colors hover:bg-gray-100"
+                >Moto</a
+              >
+            </li>
+            <li>
+              <a
+                href="/producto"
+                class="block py-2 px-4 text-sm font-medium transition-colors hover:bg-gray-100"
+                >Pack Hogar</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a
+            href="/adjudicados"
+            class="block py-2 px-4 text-sm font-medium transition-colors"
+            >Adjudicados</a
+          >
+        </li>
+        <li>
+          <a
+            href="/institucional"
+            class="block py-2 px-4 text-sm font-medium transition-colors"
+            >Institucional</a
+          >
+        </li>
+        <li>
+          <a
+            href="/contacto"
+            class="block py-2 px-4 text-sm font-medium transition-colors"
+            >Contacto</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block py-2 px-4 text-sm font-medium transition-colors"
+            >Mi Situación</a
+          >
+        </li>
       </ul>
     </nav>
   </div>
 </header>
 
 <script>
-  import { debounce } from "@/lib/debounce";
-  import { $ } from "@/lib/dom-selector";
-
   document.addEventListener("astro:page-load", () => {
-    const menuToggle = $("#menuToggle");
-    const mobileMenu = $("#mobileMenu");
-    const header = $("header");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const desktopDropdown = document.getElementById("desktopDropdown"); // Nuevo
+
     let isMenuOpen = false;
-    let lastScrollY = window.scrollY;
+    let isDropdownOpen = false; // Nuevo para manejar el dropdown
 
     menuToggle.addEventListener("click", () => {
       isMenuOpen = !isMenuOpen;
@@ -132,29 +268,15 @@ const currentPath =
         : "0";
       mobileMenu.style.opacity = isMenuOpen ? "1" : "0";
       menuToggle.setAttribute("aria-expanded", isMenuOpen.toString());
-
-      menuToggle.innerHTML = isMenuOpen
-        ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
-        : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
     });
 
-    function handleScroll() {
-      const currentScrollY = window.scrollY;
+    // Lógica para el dropdown del menú de escritorio
+    const dropdownToggle = document.querySelector('a[href="#"]'); // Suponiendo que el toggle es el <a> con href="#"
 
-      if (!isMenuOpen) {
-        header.style.transform =
-          currentScrollY === 0
-            ? "translateY(0)"
-            : currentScrollY > lastScrollY
-              ? "translateY(-100%)"
-              : "translateY(0)";
-      }
-
-      lastScrollY = currentScrollY;
-    }
-
-    window.addEventListener("scroll", debounce(handleScroll, 100), {
-      passive: true,
+    dropdownToggle.addEventListener("click", (e) => {
+      e.preventDefault(); // Prevenir la acción predeterminada (evitar que navegue)
+      isDropdownOpen = !isDropdownOpen;
+      desktopDropdown.style.display = isDropdownOpen ? "block" : "none"; // Mostrar/ocultar el dropdown
     });
   });
 </script>
