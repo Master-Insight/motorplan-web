@@ -11,9 +11,6 @@ const data = products.filter(prod => prod.seccion.toLowerCase() === type?.toLoca
 
 <Layout title="Nuestros Planes">
   <Frame>
-    <div class="flex flex-col w-full p-12 text-center">
-      <h2 class="text-3xl">Filtrar por marca</h2>
-    </div>
 
     <FilterOptions data={data}/>
     <!-- LIST -->
