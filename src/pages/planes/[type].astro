@@ -1,9 +1,22 @@
 ---
 import Frame from "@/components/Frame.astro";
 import Layout from "@/layouts/Layout.astro";
+import FilterOptions from "@/sections/productos/FilterOptions.astro";
+import ProductList from "@/sections/productos/ProductList.astro";
+import {products} from "@/lib/fetchin-data";
 
 const type = Astro.params.type;
-console.log(type);
+const data = products.filter(prod => prod.seccion.toLowerCase() === type?.toLocaleLowerCase())
 ---
 
-<Layout title="Nuestros Planes"> <Frame /></Layout>
+<Layout title="Nuestros Planes">
+  <Frame>
+    <div class="flex flex-col w-full p-12 text-center">
+      <h2 class="text-3xl">Filtrar por marca</h2>
+    </div>
+
+    <FilterOptions data={data}/>
+    <!-- LIST -->
+    <ProductList data={data} />
+  </Frame>
+</Layout>
