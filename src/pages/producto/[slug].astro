@@ -61,36 +61,21 @@ const {
           </h3>
 
           <!-- Mostrar clasificador si está disponible -->
-          <!-- {
-            Clasificador && (
-              <p class="text-lg text-gray-600 mb-4">{Clasificador}</p>
-            )
-          } -->
+          <!-- { Clasificador && ( <p class="text-lg text-gray-600 mb-4">{Clasificador}</p> )} -->
 
           <!-- Información del producto -->
           <div class="space-y-2">
             <p class="font-medium text-3xl">
               CUOTA:
               <span class="text-primary-darker font-bold">
-                $ {
-                  cuotasdesde
-                    ? Number(cuotasdesde.replace(/,/g, "")).toLocaleString(
-                        "es-AR",
-                      ) + ",00"
-                    : "N/A"
-                }
+                $ {cuotasdesde ? cuotasdesde : "Consultar valor"}
               </span>
             </p>
             <p class="text-gray-700">
               Valor nominal:
               <span class="font-semibold">
-                $ {
-                  valornominal
-                    ? Number(valornominal.replace(/,/g, "")).toLocaleString(
-                        "es-AR",
-                      ) + ",00"
-                    : "N/A"
-                }
+                <!-- valornominal ? Number(valornominal.replace(/,/g, "")).toLocaleString("es-AR",) + ",00" : "N/A" -->
+                $ {valornominal ? valornominal : "Consultar valor"}
               </span>
             </p>
           </div>
