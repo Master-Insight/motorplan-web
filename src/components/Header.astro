@@ -69,10 +69,10 @@ const currentPath =
           </li>
 
           <li class="relative group">
-            <a
-              href="#"
+            <button
+              id="planesBtn"
               class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
-              >Planes</a
+              >Planes</button
             >
             <!-- Menú desplegable para desktop -->
             <ul
@@ -175,12 +175,11 @@ const currentPath =
         </li>
 
         <li>
-          <a
-            href="#"
+          <span
             class="block py-2 px-4 text-sm font-medium transition-colors"
-            >Planes</a
+            >Planes</span
           >
-          <ul class="ml-4 space-y-1 mt-1 hidden group-hover:block">
+          <ul class="ml-4 space-y-1 mt-1 md:hidden group-hover:block">
             <li>
               <a
                 href="/planes/auto"
@@ -268,10 +267,13 @@ const currentPath =
         : "0";
       mobileMenu.style.opacity = isMenuOpen ? "1" : "0";
       menuToggle.setAttribute("aria-expanded", isMenuOpen.toString());
+      menuToggle.innerHTML = isMenuOpen
+        ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+        : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"> <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
     });
 
     // Lógica para el dropdown del menú de escritorio
-    const dropdownToggle = document.querySelector('a[href="#"]'); // Suponiendo que el toggle es el <a> con href="#"
+    const dropdownToggle = document.querySelector('#planesBtn'); // Suponiendo que el toggle es el <a> con href="#"
 
     dropdownToggle.addEventListener("click", (e) => {
       e.preventDefault(); // Prevenir la acción predeterminada (evitar que navegue)
