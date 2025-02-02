@@ -5,17 +5,15 @@ const telefono = config.empresa.whatsapp;
 
 <!-- Section Form -->
 <section class="bg-primary-darker w-full">
-  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
       <!-- Form -->
-      <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+      <div class="rounded-lg bg-white p-6 shadow-lg lg:col-span-3 lg:p-8">
         <form id="contactForm" class="space-y-4" onsubmit="handleSubmit(event)">
           <div>
-            <label for="nombre" class="text-lg font-medium text-gray-700"
-              >Nombre*</label
-            >
+            <label for="nombre" class="input-label">Nombre*</label>
             <input
-              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              class="input-field"
               type="text"
               id="nombre"
               name="nombre"
@@ -25,23 +23,16 @@ const telefono = config.empresa.whatsapp;
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label for="email" class="text-lg font-medium text-gray-700"
-                >Dirección de email</label
-              >
-              <input
-                class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
-                type="email"
-                id="email"
-                name="email"
-              />
+              <label for="email" class="input-label">Dirección de email</label>
+              <input class="input-field" type="email" id="email" name="email" />
             </div>
 
             <div>
-              <label for="telefono" class="text-lg font-medium text-gray-700"
+              <label for="telefono" class="input-label"
                 >Número de teléfono*</label
               >
               <input
-                class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+                class="input-field"
                 type="tel"
                 id="telefono"
                 name="telefono"
@@ -51,11 +42,9 @@ const telefono = config.empresa.whatsapp;
           </div>
 
           <div>
-            <label for="asunto" class="text-lg font-medium text-gray-700"
-              >Asunto*</label
-            >
+            <label for="asunto" class="input-label">Asunto*</label>
             <input
-              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
+              class="input-field"
               type="text"
               id="asunto"
               name="asunto"
@@ -64,39 +53,32 @@ const telefono = config.empresa.whatsapp;
           </div>
 
           <div>
-            <label for="mensaje" class="text-lg font-medium text-gray-700"
-              >Déjanos tu consulta*</label
+            <label for="mensaje" class="input-label">Déjanos tu consulta*</label
             >
             <textarea
-              class="mt-2 w-full bg-gray-100 rounded-lg border-gray-200 p-3"
-              rows="8"
+              class="input-field h-32"
               id="mensaje"
               name="mensaje"
               required></textarea>
           </div>
 
           <div class="mt-4">
-            <button
-              type="submit"
-              class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
-            >
-              Enviar
-            </button>
+            <button type="submit" class="btn-primary"> Enviar </button>
           </div>
         </form>
       </div>
 
       <!-- Texto adicional -->
-      <div class="lg:col-span-2 lg:py-12 p-8">
-        <p class="max-w-xl text-3xl font-bold text-white">
+      <div class="lg:col-span-2 lg:py-8 p-6">
+        <p class="max-w-xl text-2xl font-bold text-white">
           ¡Escribinos! Estamos para ayudarte.
         </p>
 
-        <div class="mt-8 text-lg text-primary-lighter">
+        <div class="mt-6 text-md text-primary-lighter">
           <p>También podés llamarnos al</p>
           <p class="font-bold">{telefono}</p>
         </div>
-        <div class="mt-8 text-lg text-primary-lighter">
+        <div class="mt-6 text-md text-primary-lighter">
           <p class="mt-2 not-italic">O enviarnos un WhatsApp al</p>
           <p class="font-bold">{telefono}</p>
         </div>
@@ -110,8 +92,8 @@ const telefono = config.empresa.whatsapp;
   id="modal"
   class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
 >
-  <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-    <p class="text-lg font-medium">Enviando...</p>
+  <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+    <p class="text-md font-medium">Enviando...</p>
   </div>
 </div>
 
@@ -150,3 +132,18 @@ const telefono = config.empresa.whatsapp;
     }
   }
 </script>
+
+<style>
+  /* Clases reutilizables */
+  .input-label {
+    @apply text-sm font-medium text-gray-700;
+  }
+
+  .input-field {
+    @apply mt-1 w-full bg-gray-100 rounded-lg border-gray-200 p-2 text-sm focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-block w-full rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 transition-colors sm:w-auto;
+  }
+</style>
