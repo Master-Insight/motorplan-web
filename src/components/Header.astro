@@ -252,13 +252,17 @@ const currentPath =
 </header>
 
 <script>
+  import { debounce } from "@/lib/debounce"
+
   document.addEventListener("astro:page-load", () => {
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
     const desktopDropdown = document.getElementById("desktopDropdown"); // Nuevo
+    const header = document.querySelector('#header')
 
     let isMenuOpen = false;
     let isDropdownOpen = false; // Nuevo para manejar el dropdown
+    let lastScrollY = window.scrollY
 
     menuToggle.addEventListener("click", () => {
       isMenuOpen = !isMenuOpen;
@@ -280,5 +284,24 @@ const currentPath =
       isDropdownOpen = !isDropdownOpen;
       desktopDropdown.style.display = isDropdownOpen ? "block" : "none"; // Mostrar/ocultar el dropdown
     });
+
+    function handleScroll() {
+      const currentScrollY = window.scrollY;
+
+      if (!isMenuOpen) {
+        header.style.transform =
+          currentScrollY === 0
+            ? "translateY(0)"
+            : currentScrollY > lastScrollY
+              ? "translateY(-100%)"
+              : "translateY(0)";
+      }
+
+      lastScrollY = currentScrollY;
+    }
+
+    window.addEventListener("scroll", debounce(handleScroll, 80), {
+      passive: true
+    })
   });
 </script>
