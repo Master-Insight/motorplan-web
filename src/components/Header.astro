@@ -69,10 +69,10 @@ const currentPath =
           </li>
 
           <li class="relative group">
-            <a
-              href="#"
+            <button
+              id="planesBtn"
               class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
-              >Planes</a
+              >Planes</button
             >
             <!-- Menú desplegable para desktop -->
             <ul
@@ -175,12 +175,11 @@ const currentPath =
         </li>
 
         <li>
-          <a
-            href="#"
+          <span
             class="block py-2 px-4 text-sm font-medium transition-colors"
-            >Planes</a
+            >Planes</span
           >
-          <ul class="ml-4 space-y-1 mt-1 hidden group-hover:block">
+          <ul class="ml-4 space-y-1 mt-1 md:hidden group-hover:block">
             <li>
               <a
                 href="/planes/auto"
@@ -274,7 +273,7 @@ const currentPath =
     });
 
     // Lógica para el dropdown del menú de escritorio
-    const dropdownToggle = document.querySelector('a[href="#"]'); // Suponiendo que el toggle es el <a> con href="#"
+    const dropdownToggle = document.querySelector('#planesBtn'); // Suponiendo que el toggle es el <a> con href="#"
 
     dropdownToggle.addEventListener("click", (e) => {
       e.preventDefault(); // Prevenir la acción predeterminada (evitar que navegue)
