@@ -1,0 +1,124 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Consulta de Adjudicación">
+  <section
+    class="bg-primary-light w-full mscontainer flex justify-center items-center"
+  >
+    <div class="mx-auto max-w-screen-md px-4 py-12 sm:px-6 lg:px-8">
+      <form id="consultaForm" class="bg-white p-6 rounded-lg shadow-lg">
+        <label for="dniInput" class="block text-gray-700 font-bold mb-2"
+          >Ingrese su DNI para conocer su situación:</label
+        >
+        <input
+          type="text"
+          id="dniInput"
+          class="w-full p-2 border rounded-lg mb-4"
+          required
+        />
+        <button
+          type="submit"
+          class="bg-black text-white px-4 py-2 rounded-lg w-full"
+          >Consultar</button
+        >
+        <em>Probar con DNI: 44, 94, 517 o 560</em>
+      </form>
+      <p id="loadingMessage" class="text-white text-center mt-4 hidden">
+        Cargando...
+      </p>
+      <p id="errorMessage" class="text-red-500 text-center mt-4 hidden"></p>
+      <div id="result" class="bg-white p-4 rounded-lg shadow-lg mt-4 hidden">
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .mscontainer {
+      min-height: 85vh;
+      display: flex;
+    }
+  </style>
+
+  <script>
+    document
+      .getElementById("consultaForm")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const dni = document.getElementById("dniInput").value.trim();
+        const loadingMessage = document.getElementById("loadingMessage");
+        const errorMessage = document.getElementById("errorMessage");
+        const resultContainer = document.getElementById("result");
+
+        loadingMessage.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+        resultContainer.classList.add("hidden");
+        resultContainer.innerHTML = "";
+
+        try {
+          // Simulación de API Mock
+          const mockData = [
+            {
+              idPlan: "44",
+              nombre: "HERRERA PAOLA MARIANA",
+              numeroSorteo: 89,
+              plan: 50,
+              montoAdjudicado: "2.000.000,00",
+              numeroCuota: 3,
+              sorteo: "26/8/2023",
+            },
+            {
+              idPlan: "94",
+              nombre: "ACOSTA VIVIANA ARGENTINA",
+              numeroSorteo: 39,
+              plan: 50,
+              montoAdjudicado: "2.000.000,00",
+              numeroCuota: 6,
+              sorteo: "25/11/2023",
+            },
+            {
+              idPlan: "517",
+              nombre: "Bazán Moya Maximiliano Gastón",
+              numeroSorteo: 823,
+              plan: 50,
+              montoAdjudicado: "3.500.000,00",
+              numeroCuota: 1,
+              sorteo: "30/12/2023",
+            },
+            {
+              idPlan: "560",
+              nombre: "VARGAS CARLA ROXANA",
+              numeroSorteo: 512,
+              plan: 50,
+              montoAdjudicado: "3.500.000,00",
+              numeroCuota: 6,
+              sorteo: "27/1/2024",
+            },
+          ];
+
+          const result = mockData.find((item) => item.idPlan === dni);
+
+          if (!result) {
+            throw new Error("No se encontraron resultados para este DNI");
+          }
+
+          resultContainer.innerHTML = `
+          <h3 class="text-lg font-bold">Resultado</h3>
+          <p><strong>Nombre:</strong> ${result.nombre}</p>
+          <p><strong>Plan:</strong> ${result.plan}</p>
+          <p><strong>Monto Adjudicado:</strong> ${result.montoAdjudicado}</p>
+          <p><strong>Cuota:</strong> ${result.numeroCuota}</p>
+          <p><strong>Fecha Sorteo:</strong> ${result.sorteo}</p>
+        `;
+
+          resultContainer.classList.remove("hidden");
+        } catch (err) {
+          errorMessage.textContent = err.message;
+          errorMessage.classList.remove("hidden");
+        } finally {
+          loadingMessage.classList.add("hidden");
+        }
+      });
+  </script>
+</Layout>
