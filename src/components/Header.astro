@@ -143,7 +143,7 @@ const currentPath =
 
           <li class="relative">
             <a
-              href="#"
+              href="/misituacion"
               class="items-center text-sm font-semibold transition-all duration-300 hover:text-secondary-light relative"
               >Mi Situación</a
             >
@@ -175,8 +175,7 @@ const currentPath =
         </li>
 
         <li>
-          <span
-            class="block py-2 px-4 text-sm font-medium transition-colors"
+          <span class="block py-2 px-4 text-sm font-medium transition-colors"
             >Planes</span
           >
           <ul class="ml-4 space-y-1 mt-1 md:hidden group-hover:block">
@@ -241,7 +240,7 @@ const currentPath =
         </li>
         <li>
           <a
-            href="#"
+            href="/misituacion"
             class="block py-2 px-4 text-sm font-medium transition-colors"
             >Mi Situación</a
           >
@@ -252,17 +251,17 @@ const currentPath =
 </header>
 
 <script>
-  import { debounce } from "@/lib/debounce"
+  import { debounce } from "@/lib/debounce";
 
   document.addEventListener("astro:page-load", () => {
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
     const desktopDropdown = document.getElementById("desktopDropdown"); // Nuevo
-    const header = document.querySelector('#header')
+    const header = document.querySelector("#header");
 
     let isMenuOpen = false;
     let isDropdownOpen = false; // Nuevo para manejar el dropdown
-    let lastScrollY = window.scrollY
+    let lastScrollY = window.scrollY;
 
     menuToggle.addEventListener("click", () => {
       isMenuOpen = !isMenuOpen;
@@ -277,7 +276,7 @@ const currentPath =
     });
 
     // Lógica para el dropdown del menú de escritorio
-    const dropdownToggle = document.querySelector('#planesBtn'); // Suponiendo que el toggle es el <a> con href="#"
+    const dropdownToggle = document.querySelector("#planesBtn"); // Suponiendo que el toggle es el <a> con href="#"
 
     dropdownToggle.addEventListener("click", (e) => {
       e.preventDefault(); // Prevenir la acción predeterminada (evitar que navegue)
@@ -301,7 +300,7 @@ const currentPath =
     }
 
     window.addEventListener("scroll", debounce(handleScroll, 80), {
-      passive: true
-    })
+      passive: true,
+    });
   });
 </script>
