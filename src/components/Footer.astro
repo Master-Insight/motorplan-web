@@ -1,9 +1,16 @@
 ---
-const year = new Date().getFullYear()
+import { config } from "config";
+import Insight from "./Insight.astro";
+
+const year = new Date().getFullYear();
 ---
 
 <footer class="mx-auto w-full bg-neutral py-8">
-  <span class="text-center w-full flex justify-center">
-    {`${year} | Todos los derechos reservados`}
-  </span>
+  <div class="text-center sm:flex sm:justify-between sm:text-left">
+    <p class="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0">
+      &copy; {year}
+      {config.empresa.name} - Todos los derechos reservados
+    </p>
+    <Insight />
+  </div>
 </footer>
