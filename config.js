@@ -1,6 +1,4 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
-
-export const config = {
+const config = {
   // Gama de colores
   colors: [
     // https://paletton.com/#uid=43p0u0kmaGWbLTAhwNgqFAFwxuh
@@ -45,12 +43,31 @@ export const config = {
     descripcion: "Consultora integral de negocios que brinda asesoramiento a empresas, empresarios y emprendedores con la visión y el deseo de impulsar el crecimiento de sus negocios.",
     direccion: "Av. Emilio Olmos 123 - Piso 1 - CP: 5000 - Córdoba Capital",
     email: "consultas@motorplanargentina.com",
-    linkedin: "https://www.linkedin.com/",
-    instagram: "https://www.instagram.com/plan.x5/",
-    facebook: "https://www.facebook.com/PlanX5/",
-    youtube: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
     whatsapp: "351-4733144",
   },
+  social: [
+    {
+      name: "Email",
+      href: "mailto:consultas@motorplanargentina.com",
+
+    },
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/PlanX5/",
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/plan.x5/",
+    },
+    {
+      name: "YouTube",
+      href: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/",
+    },
+  ],
   // Imagenes. se clasifica segun la pagina 
   images: {
     logo: [
@@ -111,6 +128,7 @@ export const tailwindExtend = {
   }
 }
 
+export default config
 /*
 export const tailwindSizes = {
   sm: 'w-16 h-16',      // Small (64px)
