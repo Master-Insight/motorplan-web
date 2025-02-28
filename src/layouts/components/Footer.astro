@@ -14,26 +14,13 @@ const year = new Date().getFullYear();
     <!-- Upper -->
     <div class="flex flex-col gap-8 md:flex-row md:justify-between">
       <!-- Logo -->
-      <div>
-        <div class="flex justify-center sm:justify-start">
-          <img
-            src={images.logo[4]}
-            alt="Logo Insight"
-            class="w-1/2 sm:w-1/3"
-            loading="lazy"
-          />
-        </div>
-        <p
-          class="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left font-bold"
-        >
-          PLANES DE CAPITALIZACIÓN
-        </p>
-        <p
-          class="max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left"
-        >
-          – Aprobados por RES. IGJ N°0000768/2021. Plazo de duración del Plan
-          hasta 330 meses. Adjudicaciones anticipadas por sorteo.
-        </p>
+      <div class="w-full flex flex-col items-center md:w-1/3">
+        <img
+          src={images.logo[4]}
+          alt="Logo Insight"
+          class="w-1/2 lg:w-4/5"
+          loading="lazy"
+        />
         <ul class="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
           {
             social.map(({ name, href }) => (
@@ -46,21 +33,35 @@ const year = new Date().getFullYear();
             ))
           }
         </ul>
+        <p
+          class="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left font-bold"
+        >
+          PLANES DE CAPITALIZACIÓN
+        </p>
+        <p
+          class="max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left"
+        >
+          – Aprobados por RES. IGJ N°0000768/2021. Plazo de duración del Plan
+          hasta 330 meses. Adjudicaciones anticipadas por sorteo.
+        </p>
+
         <!-- TODO poner aqui https://www.youtube.com/watch?v=WbpN9c0fPCY -->
       </div>
 
       <!-- Navigation Links -->
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
-        <!-- Sectores -->
-        <div class="text-center sm:text-left">
-          <p class="text-lg font-medium text-gray-900">Sectores</p>
+      <div
+        class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:col-span-3"
+      >
+        <!-- Sectores Conoces -->
+        <div class="text-center lg:text-left">
+          <p class="text-lg font-medium text-gray-900">Conocenos</p>
           <ul class="mt-8 space-y-4 text-sm">
             <li>
               <a
                 class="text-gray-700 hover:text-gray-700/75 transition duration-300"
-                href="/samples"
+                href="/institucional"
               >
-                Portafolio
+                Quienes somos
               </a>
             </li>
             <li>
@@ -68,20 +69,38 @@ const year = new Date().getFullYear();
                 class="text-gray-700 hover:text-gray-700/75 transition duration-300"
                 href="/services"
               >
-                Servicios
+                Medios de pago
               </a>
             </li>
-            <!-- <li>
-              <a class="text-gray-700 hover:text-gray-700/75" href="/team"
-                >Integrantes</a
-              >
-            </li> -->
+          </ul>
+        </div>
+
+        <!-- Sectores Info Adicional -->
+        <div class="text-center lg:text-left">
+          <p class="text-lg font-medium text-gray-900">Información Adicional</p>
+          <ul class="mt-8 space-y-4 text-sm">
             <li>
               <a
                 class="text-gray-700 hover:text-gray-700/75 transition duration-300"
-                href="/conocenos"
+                href="/plan"
               >
-                Conócenos
+                Condiciones del plan
+              </a>
+            </li>
+            <li>
+              <a
+                class="text-gray-700 hover:text-gray-700/75 transition duration-300"
+                href="/#"
+              >
+                Derecho del consumido
+              </a>
+            </li>
+            <li>
+              <a
+                class="text-gray-700 hover:text-gray-700/75 transition duration-300"
+                href="/#"
+              >
+                Defensa del consumidor
               </a>
             </li>
             <li>
@@ -89,7 +108,7 @@ const year = new Date().getFullYear();
                 class="text-gray-700 hover:text-gray-700/75 transition duration-300"
                 href="/contacto"
               >
-                Escríbenos
+                Baja del servicio
               </a>
             </li>
           </ul>
@@ -117,6 +136,14 @@ const year = new Date().getFullYear();
               >
                 <Phone aria-label="Icono de teléfono" />
                 <span class="flex-1 text-gray-700">{empresa.whatsapp}</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="text-gray-700 hover:text-gray-700/75 transition duration-300"
+                href="/#"
+              >
+                Trabaja con nosotros
               </a>
             </li>
           </ul>
