@@ -5,7 +5,17 @@ import Instagram from "@ico/Instagram.ico.astro";
 import LinkedIn from "@ico/LinkedIn.ico.astro";
 import YouTube from "@ico/Youtube.ico.astro";
 
-const { href, name, icon: IconComponent, showLabel = false } = Astro.props;
+const { href, name, showLabel = false } = Astro.props;
+
+const iconMap = {
+  Email,
+  Facebook,
+  Instagram,
+  LinkedIn,
+  YouTube,
+};
+
+const IconComponent = iconMap[name];
 ---
 
 <li>
@@ -15,7 +25,7 @@ const { href, name, icon: IconComponent, showLabel = false } = Astro.props;
     target="_blank"
     class="text-primary transition hover:text-primary-lighter flex items-center space-x-2"
   >
-    <IconComponent class="size-6" />
+    {IconComponent && <IconComponent class="size-6" />}
     {showLabel && <span>{name}</span>}
   </a>
 </li>

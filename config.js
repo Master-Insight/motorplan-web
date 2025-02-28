@@ -59,10 +59,10 @@ const config = {
       name: "Instagram",
       href: "https://www.instagram.com/plan.x5/",
     },
-    {
-      name: "YouTube",
-      href: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
-    },
+    // {
+    //   name: "YouTube",
+    //   href: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
+    // },
     {
       name: "LinkedIn",
       href: "https://www.linkedin.com/",
@@ -75,6 +75,7 @@ const config = {
       "/images/identidad/Logo-Motorplan-Naranja-1.png",  // 1- Logo horizontal       PNG
       "/images/identidad/Logo-Motorplan-Negro-1.png",    // 2- Logo horizontal       PNG
       "/images/identidad/Logotipo-Cuad.png",             // 3- Logo horizontal       PNG
+      "/images/identidad/Logo-Motorplan-alternativo-1.png", // 4- Logo horizontal    PNG
     ],
     index: [
       "/images/hero_inicio.jpeg", // pos 0 Hero
