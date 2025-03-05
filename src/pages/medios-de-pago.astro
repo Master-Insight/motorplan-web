@@ -1,0 +1,369 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Frame from "@/components/Frame.astro";
+import config from "@config";
+console.log(config);
+
+const { mediosPago } = config;
+---
+
+<Layout title="Medios de Pago - Motorplan">
+  <Frame>
+    <section class="py-16 container mx-auto px-4">
+      <!-- Aviso inicial -->
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Medios de Pago</h2>
+        <p class="text-lg text-gray-700">
+          Motorplan S.A. de Capitalización y ahorro no cuenta con <strong
+            >COBRADORES A DOMICILIO</strong
+          >.
+        </p>
+      </div>
+
+      <!-- Botones tipo radio adornados -->
+      <div class="mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div>
+          <input
+            type="radio"
+            id="opcionA"
+            name="seccion"
+            value="A"
+            class="hidden"
+            checked
+          />
+          <label
+            for="opcionA"
+            class="block text-center cursor-pointer px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300"
+          >
+            Transferencias y depósitos bancarios
+          </label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="opcionB"
+            name="seccion"
+            value="B"
+            class="hidden"
+          />
+          <label
+            for="opcionB"
+            class="block text-center cursor-pointer px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300"
+          >
+            Solicita Link de Pago
+          </label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="opcionC"
+            name="seccion"
+            value="C"
+            class="hidden"
+          />
+          <label
+            for="opcionC"
+            class="block text-center cursor-pointer px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300"
+          >
+            Solicita adhesión en débito automático en tarjeta de crédito
+          </label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="opcionD"
+            name="seccion"
+            value="D"
+            class="hidden"
+          />
+          <label
+            for="opcionD"
+            class="block text-center cursor-pointer px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300"
+          >
+            Informa tu pago
+          </label>
+        </div>
+      </div>
+
+      <!-- Sección A: Transferencias y depósitos bancarios -->
+      <div id="seccionA" class="seccion">
+        <div class="mb-12">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            A) Transferencias y depósitos bancarios:
+          </h3>
+          <!-- Contenedor responsivo para los medios de pago -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+              mediosPago.map((banco) => (
+                <div
+                  class="p-4 border rounded shadow-sm text-center"
+                  key={banco.nombre}
+                >
+                  <h4 class="text-xl font-semibold text-gray-800 mb-2">
+                    {banco.nombre}
+                  </h4>
+                  <ul class="list-disc inline-block text-left text-gray-700">
+                    {banco.detalles.map((detalle) => (
+                      <li key={detalle}>{detalle}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección B: Solicita Link de Pago -->
+      <div id="seccionB" class="seccion hidden">
+        <div class="mb-12">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            B) Solicita Link de Pago
+          </h3>
+          <p class="text-lg text-gray-700 mb-4 text-center">
+            Complete el siguiente formulario con su DNI, número de contacto,
+            medio de pago a utilizar y nombre y apellido. Posteriormente, nos
+            comunicaremos por teléfono.
+          </p>
+          <form
+            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+          >
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="dni-b">DNI</label
+              >
+              <input
+                id="dni-b"
+                type="text"
+                placeholder="Ingrese su DNI"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="contacto-b">Número de Contacto</label
+              >
+              <input
+                id="contacto-b"
+                type="text"
+                placeholder="Ingrese su número de contacto"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="medio-b">Medio de Pago</label
+              >
+              <input
+                id="medio-b"
+                type="text"
+                placeholder="Medio de pago a utilizar"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="nombre-b">Nombre y Apellido</label
+              >
+              <input
+                id="nombre-b"
+                type="text"
+                placeholder="Ingrese su nombre y apellido"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+              >
+                Enviar Solicitud
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Sección C: Solicita adhesión en débito automático en tarjeta de crédito -->
+      <div id="seccionC" class="seccion hidden">
+        <div class="mb-12">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            C) Solicita adhesión en débito automático en tarjeta de crédito
+          </h3>
+          <p class="text-lg text-gray-700 mb-4 text-center">
+            Complete el siguiente formulario con su DNI, número de contacto y
+            nombre y apellido para gestionar el proceso de adhesión.
+          </p>
+          <form
+            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+          >
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="dni-c">DNI</label
+              >
+              <input
+                id="dni-c"
+                type="text"
+                placeholder="Ingrese su DNI"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="contacto-c">Número de Contacto</label
+              >
+              <input
+                id="contacto-c"
+                type="text"
+                placeholder="Ingrese su número de contacto"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="nombre-c">Nombre y Apellido</label
+              >
+              <input
+                id="nombre-c"
+                type="text"
+                placeholder="Ingrese su nombre y apellido"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+              >
+                Enviar Solicitud
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Sección D: Informa tu pago -->
+      <div id="seccionD" class="seccion hidden">
+        <div class="mb-12">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            D) Informa tu pago
+          </h3>
+          <p class="text-lg text-gray-700 mb-4 text-center">
+            Complete el siguiente formulario con su DNI, monto, fecha,
+            seleccione el medio de pago utilizado y adjunte el comprobante.
+          </p>
+          <form
+            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+          >
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="dni-d">DNI</label
+              >
+              <input
+                id="dni-d"
+                type="text"
+                placeholder="Ingrese su DNI"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="monto">Monto</label
+              >
+              <input
+                id="monto"
+                type="text"
+                placeholder="Ingrese el monto"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="fecha">Fecha</label
+              >
+              <input
+                id="fecha"
+                type="date"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="medio-d">Medio de Pago Utilizado</label
+              >
+              <select
+                id="medio-d"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              >
+                <option value="">Seleccione una opción</option>
+                <option value="Banco Santander">Banco Santander</option>
+                <option value="Banco ICBC">Banco ICBC</option>
+                <option value="Banco Provincia de Neuquen"
+                  >Banco Provincia de Neuquén</option
+                >
+                <option value="Mercado Pago">Mercado Pago</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="comprobante">Comprobante</label
+              >
+              <input
+                id="comprobante"
+                type="file"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+              >
+                Enviar Información
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Se obtienen todos los radio buttons y las secciones correspondientes
+      const radios = document.querySelectorAll('input[name="seccion"]');
+      const sections = {
+        A: document.getElementById("seccionA"),
+        B: document.getElementById("seccionB"),
+        C: document.getElementById("seccionC"),
+        D: document.getElementById("seccionD"),
+      };
+
+      radios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          Object.values(sections).forEach((section) => {
+            section.classList.add("hidden");
+          });
+          sections[radio.value].classList.remove("hidden");
+        });
+      });
+    </script>
+
+    <style>
+      input[type="radio"]:checked + label {
+        background-color: #3182ce;
+        color: #fff;
+      }
+    </style>
+  </Frame>
+</Layout>
