@@ -92,6 +92,32 @@ const config = {
       "/images/Conversacion.jpeg", // pos 0 Hero
     ],
   },
+  mediosPago: [
+    {
+      nombre: "Mercado Pago",
+      detalles: [
+        "CVU: 0000003100023016967228",
+        "Alias: MOTORPLAN.mp",
+        "Cuit: 30-71632502-0",
+      ],
+    },
+    {
+      nombre: "BANCO ICBC",
+      detalles: [
+        "CBU: 0150545002000108363049",
+        "CUIT: 30-71632502-0",
+        "CTA: 0545/02108363/04",
+      ],
+    },
+    {
+      nombre: "BANCO PROVINCIA DE NEUQUEN",
+      detalles: [
+        "CBU: 0970026010008205970017",
+        "CUIT: 30-71632502-0",
+        "CTA: 26/820597/1",
+      ],
+    },
+  ],
   // Objeto que detalle servicios prestados
   servicios: "Markdown",
   // Equipo
