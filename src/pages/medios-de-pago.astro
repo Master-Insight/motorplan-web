@@ -201,15 +201,18 @@ const { mediosPago } = config;
             nombre y apellido para gestionar el proceso de adhesión.
           </p>
           <form
+            id="formCPayForm"
             class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+            onsubmit="handleSubmitC(event)"
           >
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="dni-c">DNI</label
+                for="dniC">DNI</label
               >
               <input
-                id="dni-c"
+                id="dniC"
+                name="dniC"
                 type="text"
                 placeholder="Ingrese su DNI"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -218,10 +221,11 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="contacto-c">Número de Contacto</label
+                for="contactoC">Número de Contacto</label
               >
               <input
-                id="contacto-c"
+                id="contactoC"
+                name="contactoC"
                 type="text"
                 placeholder="Ingrese su número de contacto"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -230,10 +234,11 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="nombre-c">Nombre y Apellido</label
+                for="nombreC">Nombre y Apellido</label
               >
               <input
-                id="nombre-c"
+                id="nombreC"
+                name="nombreC"
                 type="text"
                 placeholder="Ingrese su nombre y apellido"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -388,10 +393,45 @@ const { mediosPago } = config;
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        console.log(data);
 
         try {
           const response = await fetch("/api/payB.json", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (response.ok) {
+            // Redirigir a la página de "gracias por tu contacto"
+            window.location.href = "/graciasportucontacto";
+          } else {
+            alert("Error al enviar los datos");
+          }
+        } catch (error) {
+          alert("Ocurrió un error inesperado: " + error.message);
+        } finally {
+          // Ocultar el modal de "Enviando..."
+          modal.classList.add("hidden");
+        }
+      }
+    </script>
+
+    <!-- Script Enviar Formulario C -->
+    <script is:inline>
+      async function handleSubmitC(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+        const form = document.getElementById("formCPayForm");
+        const modal = document.getElementById("modal");
+
+        // Mostrar el modal de "Enviando..."
+        modal.classList.remove("hidden");
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data);
+
+        try {
+          const response = await fetch("/api/payC.json", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
