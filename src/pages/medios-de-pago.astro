@@ -122,16 +122,19 @@ const { mediosPago } = config;
             comunicaremos por teléfono.
           </p>
           <form
+            id="formBPayForm"
             class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+            onsubmit="handleSubmitB(event)"
           >
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="dni-b">DNI</label
+                for="dniB">DNI</label
               >
               <input
-                id="dni-b"
+                id="dniB"
                 type="text"
+                name="dniB"
                 placeholder="Ingrese su DNI"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
               />
@@ -139,10 +142,11 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="contacto-b">Número de Contacto</label
+                for="contactoB">Número de Contacto</label
               >
               <input
-                id="contacto-b"
+                id="contactoB"
+                name="contactoB"
                 type="text"
                 placeholder="Ingrese su número de contacto"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -151,10 +155,11 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="medio-b">Medio de Pago</label
+                for="medioB">Medio de Pago</label
               >
               <input
-                id="medio-b"
+                id="medioB"
+                name="medioB"
                 type="text"
                 placeholder="Medio de pago a utilizar"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -163,10 +168,11 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="nombre-b">Nombre y Apellido</label
+                for="nombreB">Nombre y Apellido</label
               >
               <input
-                id="nombre-b"
+                id="nombreB"
+                name="nombreB"
                 type="text"
                 placeholder="Ingrese su nombre y apellido"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -335,6 +341,16 @@ const { mediosPago } = config;
       </div>
     </section>
 
+    <!-- Modal "Enviando" -->
+    <div
+      id="modal"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+        <p class="text-md font-medium">Enviando...</p>
+      </div>
+    </div>
+
     <script>
       // Se obtienen todos los radio buttons y las secciones correspondientes
       const radios = document.querySelectorAll('input[name="seccion"]');
@@ -357,6 +373,42 @@ const { mediosPago } = config;
           });
         }
       });
+    </script>
+
+    <!-- Script Enviar Formulario B -->
+    <script is:inline>
+      async function handleSubmitB(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+        const form = document.getElementById("formBPayForm");
+        const modal = document.getElementById("modal");
+
+        // Mostrar el modal de "Enviando..."
+        modal.classList.remove("hidden");
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data);
+
+        try {
+          const response = await fetch("/api/payB.json", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (response.ok) {
+            // Redirigir a la página de "gracias por tu contacto"
+            window.location.href = "/graciasportucontacto";
+          } else {
+            alert("Error al enviar los datos");
+          }
+        } catch (error) {
+          alert("Ocurrió un error inesperado: " + error.message);
+        } finally {
+          // Ocultar el modal de "Enviando..."
+          modal.classList.add("hidden");
+        }
+      }
     </script>
 
     <style>
