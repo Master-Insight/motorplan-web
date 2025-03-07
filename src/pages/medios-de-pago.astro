@@ -4,6 +4,12 @@ import Frame from "@/components/Frame.astro";
 import config from "@config";
 
 const { mediosPago } = config;
+const opcionesMedios = [
+  "Banco Santander",
+  "Banco ICBC",
+  "Banco Provincia de Neuquén",
+  "Mercado Pago",
+];
 ---
 
 <Layout title="Medios de Pago - Motorplan">
@@ -268,14 +274,30 @@ const { mediosPago } = config;
           </p>
           <form
             class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+            id="formDPayForm"
+            onsubmit="handleSubmitD(event)"
           >
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="dni-d">DNI</label
+                for="nombreD">Nombre y Apellido</label
               >
               <input
-                id="dni-d"
+                id="nombreD"
+                name="nombreD"
+                type="text"
+                placeholder="Ingrese su nombre y apellido"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="dniD">DNI</label
+              >
+              <input
+                id="dniD"
+                name="dniD"
                 type="text"
                 placeholder="Ingrese su DNI"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -284,11 +306,12 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="monto">Monto</label
+                for="montoD">Monto</label
               >
               <input
-                id="monto"
-                type="text"
+                id="montoD"
+                name="montoD"
+                type="number"
                 placeholder="Ingrese el monto"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
               />
@@ -296,10 +319,11 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="fecha">Fecha</label
+                for="fechaD">Fecha</label
               >
               <input
-                id="fecha"
+                id="fechaD"
+                name="fechaD"
                 type="date"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
               />
@@ -307,19 +331,19 @@ const { mediosPago } = config;
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
-                for="medio-d">Medio de Pago Utilizado</label
+                for="medioD">Medio de Pago Utilizado</label
               >
               <select
-                id="medio-d"
+                id="medioD"
+                name="medioD"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
               >
                 <option value="">Seleccione una opción</option>
-                <option value="Banco Santander">Banco Santander</option>
-                <option value="Banco ICBC">Banco ICBC</option>
-                <option value="Banco Provincia de Neuquen"
-                  >Banco Provincia de Neuquén</option
-                >
-                <option value="Mercado Pago">Mercado Pago</option>
+                {
+                  opcionesMedios.map((opcion) => (
+                    <option value={opcion}>{opcion}</option>
+                  ))
+                }
               </select>
             </div>
             <div class="mb-4">
@@ -428,10 +452,44 @@ const { mediosPago } = config;
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        console.log(data);
 
         try {
           const response = await fetch("/api/payC.json", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (response.ok) {
+            // Redirigir a la página de "gracias por tu contacto"
+            window.location.href = "/graciasportucontacto";
+          } else {
+            alert("Error al enviar los datos");
+          }
+        } catch (error) {
+          alert("Ocurrió un error inesperado: " + error.message);
+        } finally {
+          // Ocultar el modal de "Enviando..."
+          modal.classList.add("hidden");
+        }
+      }
+    </script>
+
+    <!-- Script Enviar Formulario D -->
+    <script is:inline>
+      async function handleSubmitD(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+        const form = document.getElementById("formDPayForm");
+        const modal = document.getElementById("modal");
+
+        // Mostrar el modal de "Enviando..."
+        modal.classList.remove("hidden");
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch("/api/payD.json", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
