@@ -18,6 +18,7 @@ export const POST = async ({ request }) => {
     }).format(fechaActual);
 
     // Autenticación con Google Sheets
+    // Tiene que tener la carpeta compartida al "email de servicio"
     const auth = new google.auth.JWT(
       GOOGLE_SERVICE_ACCOUNT_EMAIL,
       null,
