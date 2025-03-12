@@ -12,7 +12,16 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@ico/*": [
+        "src/icons/*"
+      ],
+      "@config": [
+        "config.js"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"

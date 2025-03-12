@@ -1,0 +1,123 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Frame from "@/components/Frame.astro";
+import config from "@config";
+import SeccionA from "@/sections/mediosPago/SeccionA.astro";
+import SeccionB from "@/sections/mediosPago/SeccionB.astro";
+import SeccionC from "@/sections/mediosPago/SeccionC.astro";
+import SeccionD from "@/sections/mediosPago/SeccionD.astro";
+import RadioButton from "@/sections/mediosPago/RadioButton.astro";
+
+const { mediosPago } = config;
+const opcionesMedios = [
+  "Banco Santander",
+  "Banco ICBC",
+  "Banco Provincia de Neuquén",
+  "Mercado Pago",
+];
+---
+
+<Layout title="Medios de Pago - Motorplan">
+  <Frame>
+    <section class="py-16 container mx-auto px-4">
+      <!-- Aviso inicial -->
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Medios de Pago</h2>
+        <p class="text-lg text-gray-700">
+          Motorplan S.A. de Capitalización y ahorro no cuenta con <strong
+            >COBRADORES A DOMICILIO</strong
+          >.
+        </p>
+      </div>
+
+      <!-- Botones tipo radio adornados -->
+      <div class="mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <RadioButton
+          id="opcionA"
+          name="seccion"
+          value="A"
+          label="Transferencias y depósitos bancarios"
+          checked
+        />
+        <RadioButton
+          id="opcionB"
+          name="seccion"
+          value="B"
+          label="Solicita Link de Pago"
+        />
+        <RadioButton
+          id="opcionC"
+          name="seccion"
+          value="C"
+          label="Solicita adhesión en débito automático en tarjeta de crédito"
+        />
+        <RadioButton
+          id="opcionD"
+          name="seccion"
+          value="D"
+          label="Informa tu pago"
+        />
+      </div>
+
+      <!-- Sección A: Transferencias y depósitos bancarios -->
+      <SeccionA mediosPago={mediosPago} />
+
+      <!-- Sección B: Solicita Link de Pago -->
+      <SeccionB opcionesMedios={opcionesMedios} />
+
+      <!-- Sección C: Solicita adhesión en débito automático en tarjeta de crédito -->
+      <SeccionC opcionesMedios={opcionesMedios} />
+
+      <!-- Sección D: Informa tu pago -->
+      <SeccionD opcionesMedios={opcionesMedios} />
+    </section>
+
+    <!-- Modal "Enviando" -->
+    <div
+      id="modal"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+        <p class="text-md font-medium">Enviando...</p>
+      </div>
+    </div>
+
+    <script>
+      // Se obtienen todos los radio buttons y las secciones correspondientes
+      const radios = document.querySelectorAll('input[name="seccion"]');
+      const sections: Record<string, HTMLElement | null> = {
+        A: document.getElementById("seccionA"),
+        B: document.getElementById("seccionB"),
+        C: document.getElementById("seccionC"),
+        D: document.getElementById("seccionD"),
+      };
+
+      radios.forEach((radio) => {
+        if (radio instanceof HTMLInputElement) {
+          radio.addEventListener("change", () => {
+            Object.values(sections).forEach((section) => {
+              section?.classList.add("hidden"); // Evita error si es null
+            });
+
+            const selectedSection = sections[radio.value]; // Obtiene la sección correspondiente
+            selectedSection?.classList.remove("hidden"); // Verifica que no sea null antes de quitar "hidden"
+          });
+        }
+      });
+    </script>
+
+    <!-- TODO modularizacion a mejorar, se repite codigo -->
+    <!-- Script Enviar Formulario B en Componente -->
+
+    <!-- Script Enviar Formulario C en Componente -->
+
+    <!-- Script Enviar Formulario D en Componente -->
+
+    <style>
+      input[type="radio"]:checked + label {
+        background-color: #3182ce;
+        color: #fff;
+      }
+    </style>
+  </Frame>
+</Layout>

@@ -1,0 +1,137 @@
+---
+const { opcionesMedios } = Astro.props;
+---
+
+<!-- Sección C: Solicita adhesión en débito automático en tarjeta de crédito -->
+<div id="seccionC" class="seccion hidden">
+  <div class="mb-12">
+    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+      C) Solicita adhesión en débito automático en tarjeta de crédito
+    </h3>
+    <p class="text-lg text-gray-700 mb-4 text-center">
+      Complete el siguiente formulario con su DNI, número de contacto y nombre y
+      apellido para gestionar el proceso de adhesión.
+    </p>
+    <form
+      id="formCPayForm"
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+      onsubmit="handleSubmitC(event)"
+    >
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="dniC"
+          >DNI</label
+        >
+        <input
+          id="dniC"
+          name="dniC"
+          type="text"
+          placeholder="Ingrese su DNI"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="contactoC">Número de Contacto</label
+        >
+        <input
+          id="contactoC"
+          name="contactoC"
+          type="text"
+          placeholder="Ingrese su número de contacto"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombreC"
+          >Nombre y Apellido</label
+        >
+        <input
+          id="nombreC"
+          name="nombreC"
+          type="text"
+          placeholder="Ingrese su nombre y apellido"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+        >
+          Enviar Solicitud
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  const validateRequiredFieldsC = (fields) => {
+    for (const field of fields) {
+      if (!field.value.trim()) {
+        alert(`El campo ${field.name} es obligatorio.`);
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const validateDNIC = (dni) => {
+    const dniRegex = /^\d{7,8}$/;
+    if (!dniRegex.test(dni)) {
+      alert("El DNI debe tener entre 7 y 8 dígitos.");
+      return false;
+    }
+    return true;
+  };
+
+  async function handleSubmitC(event) {
+    event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+    const form = document.getElementById("formCPayForm");
+    const modal = document.getElementById("modal");
+
+    // Mostrar el modal de "Enviando..."
+    modal.classList.remove("hidden");
+
+    // Validaciones
+    const fields = [
+      { name: "DNI", value: form.dniC.value },
+      { name: "Número de Contacto", value: form.contactoC.value },
+      { name: "Nombre y Apellido", value: form.nombreC.value },
+    ];
+
+    if (!validateRequiredFieldsC(fields)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    if (!validateDNIC(form.dniC.value)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/payC.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        // Redirigir a la página de "gracias por tu contacto"
+        window.location.href = "/graciasportucontacto";
+      } else {
+        alert("Error al enviar los datos");
+      }
+    } catch (error) {
+      alert("Ocurrió un error inesperado: " + error.message);
+    } finally {
+      // Ocultar el modal de "Enviando..."
+      modal.classList.add("hidden");
+    }
+  }
+</script>

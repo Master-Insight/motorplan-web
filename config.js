@@ -1,6 +1,4 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
-
-export const config = {
+const config = {
   // Gama de colores
   colors: [
     // https://paletton.com/#uid=43p0u0kmaGWbLTAhwNgqFAFwxuh
@@ -45,12 +43,31 @@ export const config = {
     descripcion: "Consultora integral de negocios que brinda asesoramiento a empresas, empresarios y emprendedores con la visión y el deseo de impulsar el crecimiento de sus negocios.",
     direccion: "Av. Emilio Olmos 123 - Piso 1 - CP: 5000 - Córdoba Capital",
     email: "consultas@motorplanargentina.com",
-    linkedin: "https://www.linkedin.com/",
-    instagram: "https://www.instagram.com/plan.x5/",
-    facebook: "https://www.facebook.com/PlanX5/",
-    youtube: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
     whatsapp: "351-4733144",
   },
+  social: [
+    {
+      name: "Email",
+      href: "mailto:consultas@motorplanargentina.com",
+
+    },
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/PlanX5/",
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/plan.x5/",
+    },
+    // {
+    //   name: "YouTube",
+    //   href: "https://www.youtube.com/channel/UCV4sFnwo1RnMLCIT8xPZ7Yg",
+    // },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/",
+    },
+  ],
   // Imagenes. se clasifica segun la pagina 
   images: {
     logo: [
@@ -58,6 +75,7 @@ export const config = {
       "/images/identidad/Logo-Motorplan-Naranja-1.png",  // 1- Logo horizontal       PNG
       "/images/identidad/Logo-Motorplan-Negro-1.png",    // 2- Logo horizontal       PNG
       "/images/identidad/Logotipo-Cuad.png",             // 3- Logo horizontal       PNG
+      "/images/identidad/Logo-Motorplan-alternativo-1.png", // 4- Logo horizontal    PNG
     ],
     index: [
       "/images/hero_inicio.jpeg", // pos 0 Hero
@@ -74,6 +92,32 @@ export const config = {
       "/images/Conversacion.jpeg", // pos 0 Hero
     ],
   },
+  mediosPago: [
+    {
+      nombre: "Mercado Pago",
+      detalles: [
+        "CVU: 0000003100023016967228",
+        "Alias: MOTORPLAN.mp",
+        "Cuit: 30-71632502-0",
+      ],
+    },
+    {
+      nombre: "BANCO ICBC",
+      detalles: [
+        "CBU: 0150545002000108363049",
+        "CUIT: 30-71632502-0",
+        "CTA: 0545/02108363/04",
+      ],
+    },
+    {
+      nombre: "BANCO PROVINCIA DE NEUQUEN",
+      detalles: [
+        "CBU: 0970026010008205970017",
+        "CUIT: 30-71632502-0",
+        "CTA: 26/820597/1",
+      ],
+    },
+  ],
   // Objeto que detalle servicios prestados
   servicios: "Markdown",
   // Equipo
@@ -111,6 +155,7 @@ export const tailwindExtend = {
   }
 }
 
+export default config
 /*
 export const tailwindSizes = {
   sm: 'w-16 h-16',      // Small (64px)

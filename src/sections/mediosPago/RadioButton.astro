@@ -1,0 +1,20 @@
+---
+const { id, name, value, label, checked } = Astro.props;
+---
+
+<div>
+  <input
+    type="radio"
+    id={id}
+    name={name}
+    value={value}
+    class="hidden"
+    checked={checked}
+  />
+  <label
+    for={id}
+    class="block text-center cursor-pointer px-4 py-2 border rounded bg-gray-200 hover:bg-gray-300"
+  >
+    {label}
+  </label>
+</div>
