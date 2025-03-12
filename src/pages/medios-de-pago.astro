@@ -487,6 +487,81 @@ const opcionesMedios = [
         // Mostrar el modal de "Enviando..."
         modal.classList.remove("hidden");
 
+        // Validaciones
+
+        // Obtener los valores del formulario
+        const nombre = form.nombreD.value.trim();
+        const dni = form.dniD.value.trim();
+        const monto = parseFloat(form.montoD.value);
+        const fecha = form.fechaD.value;
+        const medio = form.medioD.value;
+        const file = form.comprobante.files[0];
+
+        // Validar campos requeridos
+        if (!nombre || !dni || !monto || !fecha || !medio || !file) {
+          alert("Todos los campos son obligatorios.");
+          modal.classList.add("hidden");
+          return;
+        }
+
+        // Validar DNI (7 u 8 dígitos)
+        const dniRegex = /^\d{7,8}$/;
+        if (!dniRegex.test(dni)) {
+          alert("El DNI debe tener entre 7 y 8 dígitos.");
+          modal.classList.add("hidden");
+          return;
+        }
+
+        // Validar fecha
+        const fechaActual = new Date();
+        const fechaIngresada = new Date(fecha);
+        const seisMesesAtras = new Date();
+        seisMesesAtras.setMonth(fechaActual.getMonth() - 6);
+
+        if (fechaIngresada > fechaActual) {
+          alert("La fecha no puede ser mayor a la fecha actual.");
+          modal.classList.add("hidden");
+          return;
+        }
+
+        if (fechaIngresada < seisMesesAtras) {
+          alert(
+            "La fecha no puede ser menor a 6 meses antes de la fecha actual.",
+          );
+          modal.classList.add("hidden");
+          return;
+        }
+
+        // Validar monto
+        if (monto <= 49) {
+          alert("El monto debe ser valido.");
+          modal.classList.add("hidden");
+          return;
+        }
+
+        // Validar archivo
+        const tiposPermitidos = [
+          "application/pdf",
+          "image/jpeg",
+          "image/jpg",
+          "image/png",
+          "image/bmp",
+        ];
+        const tamanoMaximo = 25 * 1024 * 1024; // 25 MB
+
+        if (!tiposPermitidos.includes(file.type)) {
+          alert("Solo se permiten archivos PDF o imágenes (JPEG, PNG).");
+          modal.classList.add("hidden");
+          return;
+        }
+
+        if (file.size > tamanoMaximo) {
+          alert("El archivo no puede superar los 25 MB.");
+          modal.classList.add("hidden");
+          return;
+        }
+
+        // si pasa validaciones se sigue a la API
         const formData = new FormData(form); // se envia como formData y no como JSON
 
         try {
