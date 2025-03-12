@@ -72,7 +72,7 @@ const {
               </span>
             </p>
             <p class="text-gray-700">
-              Valor nominal:
+              Valor nominal referencial:
               <span class="font-semibold">
                 <!-- valornominal ? Number(valornominal.replace(/,/g, "")).toLocaleString("es-AR",) + ",00" : "N/A" -->
                 $ {valornominal ? valornominal : "Consultar valor"}
@@ -147,7 +147,8 @@ const {
                 href={`/contratos/${contratoasociado}.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-primary underline hover:text-primary-dark">
+                class="text-primary underline hover:text-primary-dark"
+              >
                 Hacé clic aquí
               </a>
             </div>
