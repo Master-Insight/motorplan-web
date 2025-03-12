@@ -78,3 +78,74 @@ const { opcionesMedios } = Astro.props;
     </form>
   </div>
 </div>
+
+<script is:inline>
+  const validateRequiredFieldsB = (fields) => {
+    for (const field of fields) {
+      if (!field.value.trim()) {
+        alert(`El campo ${field.name} es obligatorio.`);
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const validateDNIB = (dni) => {
+    const dniRegex = /^\d{7,8}$/;
+    if (!dniRegex.test(dni)) {
+      alert("El DNI debe tener entre 7 y 8 dígitos.");
+      return false;
+    }
+    return true;
+  };
+
+  async function handleSubmitB(event) {
+    event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+    const form = document.getElementById("formBPayForm");
+    const modal = document.getElementById("modal");
+
+    // Mostrar el modal de "Enviando..."
+    modal.classList.remove("hidden");
+
+    // Validaciones
+    const fields = [
+      { name: "DNI", value: form.dniB.value },
+      { name: "Número de Contacto", value: form.contactoB.value },
+      { name: "Medio de Pago", value: form.medioB.value },
+      { name: "Nombre y Apellido", value: form.nombreB.value },
+    ];
+
+    if (!validateRequiredFieldsB(fields)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    if (!validateDNIB(form.dniB.value)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/payB.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        // Redirigir a la página de "gracias por tu contacto"
+        window.location.href = "/graciasportucontacto";
+      } else {
+        alert("Error al enviar los datos");
+      }
+    } catch (error) {
+      alert("Ocurrió un error inesperado: " + error.message);
+    } finally {
+      // Ocultar el modal de "Enviando..."
+      modal.classList.add("hidden");
+    }
+  }
+</script>

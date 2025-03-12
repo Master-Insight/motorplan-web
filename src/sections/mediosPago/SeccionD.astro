@@ -2,7 +2,6 @@
 const { opcionesMedios } = Astro.props;
 ---
 
-<!-- Sección D: Informa tu pago -->
 <div id="seccionD" class="seccion hidden">
   <div class="mb-12">
     <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
@@ -105,3 +104,142 @@ const { opcionesMedios } = Astro.props;
     </form>
   </div>
 </div>
+
+<script is:inline>
+  const validateRequiredFields = (fields) => {
+    for (const field of fields) {
+      if (!field.value.trim()) {
+        alert(`El campo ${field.name} es obligatorio.`);
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const validateDNI = (dni) => {
+    const dniRegex = /^\d{7,8}$/;
+    if (!dniRegex.test(dni)) {
+      alert("El DNI debe tener entre 7 y 8 dígitos.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateDate = (date) => {
+    const fechaActual = new Date();
+    const fechaIngresada = new Date(date);
+    const seisMesesAtras = new Date();
+    seisMesesAtras.setMonth(fechaActual.getMonth() - 6);
+
+    if (fechaIngresada > fechaActual) {
+      alert("La fecha no puede ser mayor a la fecha actual.");
+      return false;
+    }
+
+    if (fechaIngresada < seisMesesAtras) {
+      alert("La fecha no puede ser menor a 6 meses antes de la fecha actual.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateFile = (file, tiposPermitidos, tamanoMaximo) => {
+    if (!tiposPermitidos.includes(file.type)) {
+      alert("Solo se permiten archivos PDF o imágenes (JPEG, PNG).");
+      return false;
+    }
+
+    if (file.size > tamanoMaximo) {
+      alert("El archivo no puede superar los 25 MB.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateMonto = (monto) => {
+    if (monto <= 49) {
+      alert("El monto debe ser válido.");
+      return false;
+    }
+    return true;
+  };
+
+  async function handleSubmitD(event) {
+    event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+    const form = document.getElementById("formDPayForm");
+    const modal = document.getElementById("modal");
+
+    // Mostrar el modal de "Enviando..."
+    modal.classList.remove("hidden");
+
+    // Validaciones
+    const fields = [
+      { name: "Nombre y Apellido", value: form.nombreD.value },
+      { name: "DNI", value: form.dniD.value },
+      { name: "Monto", value: form.montoD.value },
+      { name: "Fecha", value: form.fechaD.value },
+      { name: "Medio de Pago", value: form.medioD.value },
+      { name: "Comprobante", value: form.comprobante.files[0] },
+    ];
+
+    if (!validateRequiredFields(fields)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    if (!validateDNI(form.dniD.value)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    if (!validateDate(form.fechaD.value)) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    if (!validateMonto(parseFloat(form.montoD.value))) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    const tiposPermitidos = [
+      "application/pdf",
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/bmp",
+    ];
+    const tamanoMaximo = 25 * 1024 * 1024; // 25 MB
+
+    if (
+      !validateFile(form.comprobante.files[0], tiposPermitidos, tamanoMaximo)
+    ) {
+      modal.classList.add("hidden");
+      return;
+    }
+
+    const formData = new FormData(form); // se envia como formData y no como JSON
+
+    try {
+      const response = await fetch("/api/payD.json", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Redirigir a la página de "gracias por tu contacto"
+        window.location.href = "/graciasportucontacto";
+      } else {
+        alert("Error al enviar los datos");
+      }
+    } catch (error) {
+      alert("Ocurrió un error inesperado: " + error.message);
+    } finally {
+      // Ocultar el modal de "Enviando..."
+      modal.classList.add("hidden");
+    }
+  }
+</script>
