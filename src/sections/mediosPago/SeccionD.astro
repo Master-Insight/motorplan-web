@@ -1,0 +1,107 @@
+---
+const { opcionesMedios } = Astro.props;
+---
+
+<!-- Sección D: Informa tu pago -->
+<div id="seccionD" class="seccion hidden">
+  <div class="mb-12">
+    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+      D) Informa tu pago
+    </h3>
+    <p class="text-lg text-gray-700 mb-4 text-center">
+      Complete el siguiente formulario con su DNI, monto, fecha, seleccione el
+      medio de pago utilizado y adjunte el comprobante.
+    </p>
+    <form
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md mx-auto"
+      id="formDPayForm"
+      onsubmit="handleSubmitD(event)"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombreD"
+          >Nombre y Apellido</label
+        >
+        <input
+          id="nombreD"
+          name="nombreD"
+          type="text"
+          placeholder="Ingrese su nombre y apellido"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="dniD"
+          >DNI</label
+        >
+        <input
+          id="dniD"
+          name="dniD"
+          type="text"
+          placeholder="Ingrese su DNI"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="montoD"
+          >Monto</label
+        >
+        <input
+          id="montoD"
+          name="montoD"
+          type="number"
+          placeholder="Ingrese el monto"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="fechaD"
+          >Fecha</label
+        >
+        <input
+          id="fechaD"
+          name="fechaD"
+          type="date"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="medioD"
+          >Medio de Pago Utilizado</label
+        >
+        <select
+          id="medioD"
+          name="medioD"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        >
+          <option value="">Seleccione una opción</option>
+          {
+            opcionesMedios.map((opcion) => (
+              <option value={opcion}>{opcion}</option>
+            ))
+          }
+        </select>
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="comprobante">Comprobante</label
+        >
+        <input
+          id="comprobante"
+          name="comprobante"
+          type="file"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+        />
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+        >
+          Enviar Información
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
