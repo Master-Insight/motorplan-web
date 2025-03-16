@@ -1,6 +1,14 @@
 ---
-import config from "../../../config.js";
+import config from "@config";
 const telefono = config.empresa.whatsapp;
+
+// Array con opciones
+const opcionesAsunto = [
+  "Solicitud de alta",
+  "Quiero que me contacten",
+  "Solicitud de baja del servicio",
+  "Otras opciones",
+];
 ---
 
 <!-- Section Form -->
@@ -43,13 +51,18 @@ const telefono = config.empresa.whatsapp;
 
           <div>
             <label for="asunto" class="input-label">Asunto*</label>
-            <input
-              class="input-field"
-              type="text"
+            <select
               id="asunto"
               name="asunto"
+              class="input-field font-bold"
               required
-            />
+            >
+              {
+                opcionesAsunto.map((opcion) => (
+                  <option value={opcion}>{opcion}</option>
+                ))
+              }
+            </select>
           </div>
 
           <div>
