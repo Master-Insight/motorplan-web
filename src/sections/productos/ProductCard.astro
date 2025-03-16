@@ -1,12 +1,12 @@
 ---
-const {item} = Astro.props
-const {slug, descripcion, cuotasdesde, foto} = item
+const { item } = Astro.props;
+const { slug, descripcion, cuotasdesde, foto } = item;
 ---
 
-<a 
-  href={`/producto/${slug}`} 
+<a
+  href={`/producto/${slug}`}
   class="group bg-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-slate-200"
-  >
+>
   <div class="relative w-full min-h-96 max-h-96 p-4">
     <img
       src={foto || "/images/placeholder.svg"}
@@ -20,7 +20,9 @@ const {slug, descripcion, cuotasdesde, foto} = item
     <h3 class="text-xl font-semibold h-14 mb-5 line-clamp-2">{descripcion}</h3>
     <div class="flex flex-col items-center">
       <p>Cuota desde:</p>
-      <p class="text-3xl font-bold text-secondary mb-6">${cuotasdesde.toLocaleString()}</p>
+      <p class="text-3xl font-bold text-secondary mb-6">
+        ${cuotasdesde.toLocaleString()}
+      </p>
     </div>
 
     <div
