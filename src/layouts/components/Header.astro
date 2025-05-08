@@ -263,7 +263,7 @@ const currentPath =
     let isDropdownOpen = false; // Nuevo para manejar el dropdown
     let lastScrollY = window.scrollY;
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle?.addEventListener("click", () => {
       isMenuOpen = !isMenuOpen;
       mobileMenu.style.maxHeight = isMenuOpen
         ? `${mobileMenu.scrollHeight}px`
@@ -278,11 +278,24 @@ const currentPath =
     // Lógica para el dropdown del menú de escritorio
     const dropdownToggle = document.querySelector("#planesBtn"); // Suponiendo que el toggle es el <a> con href="#"
 
-    dropdownToggle.addEventListener("click", (e) => {
-      e.preventDefault(); // Prevenir la acción predeterminada (evitar que navegue)
-      isDropdownOpen = !isDropdownOpen;
-      desktopDropdown.style.display = isDropdownOpen ? "block" : "none"; // Mostrar/ocultar el dropdown
-    });
+    function openDropdown() {
+      isDropdownOpen = true;
+      desktopDropdown.style.display = "block"; // Mostrar el dropdown
+    }
+
+    dropdownToggle.addEventListener("mouseover", openDropdown);
+
+    function handleMouseLeave() {
+      setTimeout(() => {
+        if (!dropdownToggle.matches(":hover") && !desktopDropdown.matches(":hover")) {
+          isDropdownOpen = false;
+          desktopDropdown.style.display = "none"
+        }
+      }, 200)
+    }
+
+    dropdownToggle.addEventListener("mouseleave", handleMouseLeave)
+    desktopDropdown.addEventListener("mouseleave", handleMouseLeave)
 
     function handleScroll() {
       const currentScrollY = window.scrollY;
